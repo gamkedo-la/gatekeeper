@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7519585004187110951}
   - component: {fileID: -5038029417565272332}
   m_Layer: 0
-  m_Name: Peasant
+  m_Name: Npc
   m_TagString: Peasant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,11 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  offsetX: 0
-  taxValue: 0
-  movementTarget: {fileID: 0}
   isMoving: 1
-  peasantPanel: {fileID: 0}
 --- !u!61 &-7519585004187110951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163,8 +159,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -176,4 +172,4 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4

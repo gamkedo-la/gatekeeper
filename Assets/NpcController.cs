@@ -4,37 +4,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class PeasantController : MonoBehaviour
+public class NpcController : MonoBehaviour
 {
     public float speed = 1f;
-    public float offsetX = 0f;
-    private string name = "John";
-    private string nationality = "English";
-    private string faction = "Bakers Guild";
-    public int taxValue;
-
-    public Transform movementTarget; 
+    [SerializeField]
+    public Transform movementTarget { get; private set; }
     public bool isMoving = true;
 
-
-    public void Awake()
-    {
-        taxValue = Random.Range(1, 38);
-    }
-
+    
     public void MoveToTransform(Transform target)
     {
-        if(movementTarget.tag == "Peasant")
+        if(movementTarget != target)
         {
-            offsetX = 1f;
-        }
-        else
-        {
-            offsetX = 0f;
+            isMoving = true;
+            movementTarget = target;
         }
 
         transform.position = new Vector3(
-            Mathf.MoveTowards(transform.position.x, target.position.x - offsetX, speed * Time.deltaTime),
+            Mathf.MoveTowards(transform.position.x, target.position.x, speed * Time.deltaTime),
             transform.position.y,
             transform.position.z
         );
@@ -50,7 +37,6 @@ public class PeasantController : MonoBehaviour
     {
         Debug.Log("active");
     }
-
 
     void Update()
     {
