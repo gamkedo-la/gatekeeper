@@ -11,7 +11,17 @@ public class NpcController : MonoBehaviour
     public Transform movementTarget { get; private set; }
     public bool isMoving = true;
 
-    
+    [SerializeField]
+    public string npcName { get; set; }
+
+    [SerializeField]
+    private GameObject scannerPanel;
+
+    public void setScannerPanel(GameObject scannerPanel)
+    {
+        this.scannerPanel = scannerPanel;
+    }
+
     public void MoveToTransform(Transform target)
     {
         if(movementTarget != target)
@@ -36,6 +46,17 @@ public class NpcController : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("active");
+        if (scannerPanel.activeSelf)
+        {
+            scannerPanel.SetActive(false);
+        }
+        else
+        {
+            scannerPanel.GetComponentInChildren<TMP_Text>().text = "Name: " + npcName;
+            scannerPanel.SetActive(true);
+        }
+        
+        
     }
 
     void Update()

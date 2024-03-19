@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   isMoving: 1
+  scannerPanel: {fileID: 0}
 --- !u!61 &-7519585004187110951
 BoxCollider2D:
   m_ObjectHideFlags: 0

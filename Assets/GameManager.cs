@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     private List<NpcController> npcControllers = new List<NpcController>();
 
     [SerializeField]
+    private GameObject scannerPanel;
+
+    [SerializeField]
     private WaypointController spawnWaypoint;
     [SerializeField]
     private WaypointController gateWaypoint;
@@ -20,11 +23,18 @@ public class GameManager : MonoBehaviour
     private float timeCount = 0f;
     [SerializeField]
     private int npcCount = 5;
+
+
+    private List<string> names = new List<string>();
     
 
     public void Start()
     {
-
+        names.Add("John");
+        names.Add("Mary");
+        names.Add("George");
+        names.Add("Peter");
+        names.Add("Michael");
     }
 
     public void Update()
@@ -48,6 +58,8 @@ public class GameManager : MonoBehaviour
     {
         NpcController npc = Instantiate(npcPrefab, spawnWaypoint.transform.position , Quaternion.identity);
         npc.MoveToTransform(targetLocation);
+        npc.setScannerPanel(scannerPanel);
+        npc.npcName = names[Random.Range(0, names.Count)];
         return npc;
 
 
