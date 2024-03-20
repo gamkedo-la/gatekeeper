@@ -48,7 +48,7 @@ public class NpcController : MonoBehaviour
         Debug.Log("active");
         if (scannerPanel.activeSelf)
         {
-            scannerPanel.SetActive(false);
+            scannerPanel.GetComponentInChildren<TMP_Text>().text = "Name: " + npcName;
         }
         else
         {
