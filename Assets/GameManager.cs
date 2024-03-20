@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     private GameObject scannerPanel;
 
     [SerializeField]
+    private GameObject scannerDiseaseImage;
+
+    [SerializeField]
     private WaypointController spawnWaypoint;
     [SerializeField]
     private WaypointController gateWaypoint;
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
         names.Add("Mary");
         names.Add("George");
         names.Add("Peter");
-        names.Add("Michael");
+        names.Add("Michael");    
     }
 
     public void Update()
@@ -60,6 +63,7 @@ public class GameManager : MonoBehaviour
         npc.MoveToTransform(targetLocation);
         npc.setScannerPanel(scannerPanel);
         npc.npcName = names[Random.Range(0, names.Count)];
+        npc.setScannerDiseaseImage(scannerDiseaseImage);
         return npc;
 
 
