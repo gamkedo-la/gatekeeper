@@ -6,9 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
-    private NpcController npcPrefab;
+    private CivilianController civilianPrefab;
     [SerializeField]
-    private List<NpcController> npcControllers = new List<NpcController>();
+    private List<CivilianController> civilianControllers = new List<CivilianController>();
 
     [SerializeField]
     private GameObject scannerPanel;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private float timeCount = 0f;
     [SerializeField]
-    private int npcCount = 5;
+    private int civilianCount = 5;
 
 
     private List<string> names = new List<string>();
@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
     {
         
         timeCount += Time.deltaTime;
-        if (timeCount >= 2f && npcControllers.Count < npcCount)
+        if (timeCount >= 2f && civilianControllers.Count < civilianCount)
         {
-            npcControllers.Add(CreatePeasant(gateWaypoint.transform));
+            civilianControllers.Add(CreateCivilian(gateWaypoint.transform));
             timeCount = 0;
         }
 
@@ -57,14 +57,14 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public NpcController CreatePeasant(Transform targetLocation)
+    public CivilianController CreateCivilian(Transform targetLocation)
     {
-        NpcController npc = Instantiate(npcPrefab, spawnWaypoint.transform.position , Quaternion.identity);
-        npc.MoveToTransform(targetLocation);
-        npc.setScannerPanel(scannerPanel);
-        npc.npcName = names[Random.Range(0, names.Count)];
-        npc.setScannerDiseaseImage(scannerDiseaseImage);
-        return npc;
+        CivilianController civilian = Instantiate(civilianPrefab, spawnWaypoint.transform.position , Quaternion.identity);
+        civilian.MoveToTransform(targetLocation);
+        civilian.setScannerPanel(scannerPanel);
+        civilian.npcName = names[Random.Range(0, names.Count)];
+        civilian.setScannerDiseaseImage(scannerDiseaseImage);
+        return civilian;
 
 
     }

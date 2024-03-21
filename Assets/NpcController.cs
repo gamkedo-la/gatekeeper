@@ -15,41 +15,6 @@ public class NpcController : MonoBehaviour
     [SerializeField]
     public string npcName { get; set; }
 
-    [SerializeField]
-    private GameObject scannerPanel;
-
-    [SerializeField]
-    private GameObject scannerDiseaseImage;
-
-
-    [SerializeField]
-    private bool isDiseased;
-
-    public void Start()
-    {
-        
-        int randomNum = Random.Range(0, 3);
-        if (randomNum == 1)
-        {
-            isDiseased = true;
-        }
-        else
-        {
-            isDiseased = false;
-        }
-        
-    }
-
-    public void setScannerPanel(GameObject scannerPanel)
-    {
-        this.scannerPanel = scannerPanel;
-    }
-
-    public void setScannerDiseaseImage(GameObject scannerDiseaseImage)
-    {
-        this.scannerDiseaseImage = scannerDiseaseImage;
-    }
-
     public void MoveToTransform(Transform target)
     {
         if(movementTarget != target)
@@ -71,38 +36,16 @@ public class NpcController : MonoBehaviour
 
     }
 
-    private void OnMouseDown()
+    public void Start()
     {
 
-        if (scannerPanel.activeSelf)
-        {
-            scannerPanel.GetComponentInChildren<TMP_Text>().text = "Name: " + npcName;
 
-
-        }
-        else
-        {
-            scannerPanel.GetComponentInChildren<TMP_Text>().text = "Name: " + npcName;
-            scannerPanel.SetActive(true);
-
-        }
-
-        if (isDiseased)
-        {
-            scannerDiseaseImage.SetActive(true);
-        }
-        else
-        {
-            scannerDiseaseImage.SetActive(false);
-        }
 
     }
 
     void Update()
     {
-        if (isMoving)
-        {
-            MoveToTransform(movementTarget); 
-        }
+
     }
+
 }
