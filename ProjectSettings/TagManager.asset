@@ -4,16 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Peasant
+  - Civilian
+  - Enemy
+  - Guard
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Civilian
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Guard
   - 
   - 
   - 

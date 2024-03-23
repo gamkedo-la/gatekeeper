@@ -52,9 +52,23 @@ public class CivilianController : NpcController
 
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 6)
+        {
+            isDiseased = true;
+            GetComponent<Rigidbody2D>().AddForce(new Vector3(5.0f, 0, 0), ForceMode2D.Impulse);
+            health--;
+            
+        }
+    }
+
     void Start()
     {
-        int randomNum = Random.Range(0, 3);
+
+        health = 3;
+
+        int randomNum = Random.Range(0, 100);
         if (randomNum == 1)
         {
             isDiseased = true;
@@ -68,6 +82,11 @@ public class CivilianController : NpcController
     // Update is called once per frame
     void Update()
     {
+        if(health <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+
         if (isMoving)
         {
             MoveToTransform(movementTarget);

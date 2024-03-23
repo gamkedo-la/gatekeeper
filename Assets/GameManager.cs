@@ -7,6 +7,10 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private CivilianController civilianPrefab;
+
+    [SerializeField]
+    private EnemyController enemyPrefab;
+
     [SerializeField]
     private List<CivilianController> civilianControllers = new List<CivilianController>();
 

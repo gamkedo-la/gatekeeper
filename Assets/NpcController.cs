@@ -8,9 +8,14 @@ using UnityEngine.UIElements;
 public class NpcController : MonoBehaviour
 {
     public float speed = 1f;
+
     [SerializeField]
-    public Transform movementTarget { get; private set; }
+    protected Transform movementTarget { get; set; }
+
     public bool isMoving = true;
+
+    [SerializeField]
+    protected int health;
 
     [SerializeField]
     public string npcName { get; set; }
