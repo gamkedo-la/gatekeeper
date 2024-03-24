@@ -15,6 +15,12 @@ public class GameManager : MonoBehaviour
     private List<CivilianController> civilianControllers = new List<CivilianController>();
 
     [SerializeField]
+    private List<EnemyController> enemyControllers = new List<EnemyController>();
+
+    [SerializeField]
+    private List<GuardController> guardControllers = new List<GuardController>();
+
+    [SerializeField]
     private GameObject scannerPanel;
 
     [SerializeField]
