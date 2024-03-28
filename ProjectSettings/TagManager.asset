@@ -12,13 +12,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Civilian
+  - Player
   - Water
   - UI
-  - Enemy
-  - Guard
+  - Ground
+  - 
   - Projectile
-  - Barrier
+  - 
   - 
   - 
   - 
