@@ -42,17 +42,16 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        // Get the mouse position
         Vector3 mousePosition = Input.mousePosition;
 
-        // Convert the mouse position to world coordinates
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-        // Calculate the angle between the sprite and the mouse
         float angle = Mathf.Atan2(mouseWorldPosition.y - gunTransform.position.y, mouseWorldPosition.x - gunTransform.position.x) * Mathf.Rad2Deg;
 
-        // Set the sprite's rotation to this angle
+
+
+        angle = Mathf.Clamp(angle, -90, 90);
+
         gunTransform.rotation = Quaternion.Euler(0, 0, angle);
 
 
