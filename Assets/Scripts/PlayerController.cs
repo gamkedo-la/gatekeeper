@@ -50,9 +50,21 @@ public class PlayerController : MonoBehaviour
 
 
 
-        angle = Mathf.Clamp(angle, -90, 90);
+        if(!facingRight)
+        {
+            if (angle < 0) angle += 360;
 
-        gunTransform.rotation = Quaternion.Euler(0, 0, angle);
+            angle = Mathf.Clamp(angle, 90, 270);
+
+            gunTransform.rotation = Quaternion.Euler(180, 0, -angle);
+        }else if(facingRight)
+        {
+            angle = Mathf.Clamp(angle, -90, 90);
+
+            gunTransform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+
+        
 
 
         Movement();
@@ -122,6 +134,7 @@ public class PlayerController : MonoBehaviour
         facingDirection = facingDirection * -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+        gunTransform.Rotate(180, 180, 0);
     }
 
     private void FlipController()
