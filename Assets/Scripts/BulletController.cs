@@ -16,7 +16,7 @@ public class BulletController : MonoBehaviour
 
     private void Update()
     {
-        MoveToTarget();
+        
     }
 
     public void MoveToTarget()

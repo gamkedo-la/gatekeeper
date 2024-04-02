@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
 
-    private Animator anim;
+    [SerializeField] private Animator playerAnim;
+    [SerializeField] private Animator gunAnim;
 
     private float xInput;
 
@@ -19,53 +21,56 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
 
     
-
-
     [Header("Collision")]
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask groundMask;
+
+
+    
     private bool isGrounded;
     private bool isCrouched;
+    private bool isFiring;
 
 
 
-    // The sprite's transform
-    [SerializeField]
-    private Transform gunTransform;
+    [Header("Gun")]
+    [SerializeField] private Transform gunTransform;
+    [SerializeField] private Transform muzzleTransform;
+    [SerializeField] private Transform bulletTargetTransform;
+    [SerializeField] private BulletController bulletPrefab;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
+    }
+
+    private void Shoot()
+    {
+
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position, 10f);
+
+        if (raycastHit2D.collider != null)
+        {
+            Debug.Log(raycastHit2D.collider.attachedRigidbody);
+        }
+        
+        Debug.DrawLine(muzzleTransform.position, bulletTargetTransform.position,Color.white,.1f);
+
     }
 
 
     void Update()
     {
-        Vector3 mousePosition = Input.mousePosition;
 
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        float angle = Mathf.Atan2(mouseWorldPosition.y - gunTransform.position.y, mouseWorldPosition.x - gunTransform.position.x) * Mathf.Rad2Deg;
-
-
-
-        if(!facingRight)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (angle < 0) angle += 360;
-
-            angle = Mathf.Clamp(angle, 90, 270);
-
-            gunTransform.rotation = Quaternion.Euler(180, 0, -angle);
-        }else if(facingRight)
-        {
-            angle = Mathf.Clamp(angle, -90, 90);
-
-            gunTransform.rotation = Quaternion.Euler(0, 0, angle);
+            Shoot();
         }
-
         
 
+
+        Aim();
 
         Movement();
         CheckInput();
@@ -75,6 +80,30 @@ public class PlayerController : MonoBehaviour
         FlipController();
         AnimatorControllers();
 
+    }
+
+    private void Aim()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        float angle = Mathf.Atan2(mouseWorldPosition.y - gunTransform.position.y, mouseWorldPosition.x - gunTransform.position.x) * Mathf.Rad2Deg;
+
+        if (!facingRight)
+        {
+            if (angle < 0) angle += 360;
+
+            angle = Mathf.Clamp(angle, 90, 270);
+
+            gunTransform.rotation = Quaternion.Euler(180, 0, -angle);
+        }
+        else if (facingRight)
+        {
+            angle = Mathf.Clamp(angle, -90, 90);
+
+            gunTransform.rotation = Quaternion.Euler(0, 0, angle);
+        }
     }
 
     private void CollisionChecks()
@@ -121,10 +150,12 @@ public class PlayerController : MonoBehaviour
     {
         bool isMoving = rb.velocity.x != 0;
 
-        anim.SetFloat("yVelocity", rb.velocity.y);
-        anim.SetBool("isMoving", isMoving);
-        anim.SetBool("isGrounded", isGrounded);
-        anim.SetBool("isCrouched", isCrouched);
+        playerAnim.SetFloat("yVelocity", rb.velocity.y);
+        playerAnim.SetBool("isMoving", isMoving);
+        playerAnim.SetBool("isGrounded", isGrounded);
+        playerAnim.SetBool("isCrouched", isCrouched);
+
+        gunAnim.SetBool("isFiring", isFiring);
 
 
     }
