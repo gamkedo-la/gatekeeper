@@ -15,9 +15,9 @@ public class CameraController : MonoBehaviour
         distanceZ = Camera.main.transform.position.z - player.transform.position.z;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-        Vector3 targetPosition = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + distanceZ);
+        Vector3 targetPosition = new Vector3(player.transform.position.x, 2.0f, player.transform.position.z + distanceZ);
         Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetPosition, Time.deltaTime * 5f);
     }
 }
