@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     private Rigidbody2D rb;
 
     [Header("Movement")]
@@ -16,29 +15,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator gunAnim;
 
     private float xInput;
-
     private int facingDirection = 1;
     private bool facingRight = true;
 
-    
     [Header("Collision")]
     [SerializeField] private float groundCheckDistance;
     [SerializeField] private LayerMask groundMask;
 
-
-    
     private bool isGrounded;
     private bool isCrouched;
     private bool isFiring;
-
-
 
     [Header("Gun")]
     [SerializeField] private Transform gunTransform;
     [SerializeField] private Transform muzzleTransform;
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private BulletController bulletPrefab;
-
 
     void Start()
     {
@@ -47,7 +39,6 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-
         RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position, 10f);
 
         if (raycastHit2D.collider != null)
@@ -56,20 +47,16 @@ public class PlayerController : MonoBehaviour
         }
         
         Debug.DrawLine(muzzleTransform.position, bulletTargetTransform.position,Color.white,.1f);
-
     }
 
 
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
         
-
-
         Aim();
 
         Movement();
@@ -79,7 +66,6 @@ public class PlayerController : MonoBehaviour
 
         FlipController();
         AnimatorControllers();
-
     }
 
     private void Aim()
@@ -129,7 +115,6 @@ public class PlayerController : MonoBehaviour
         {
             isCrouched = false;
         }
-        
     }
 
     private void Movement()
@@ -143,7 +128,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-
     }
 
     private void AnimatorControllers()
@@ -156,8 +140,6 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("isCrouched", isCrouched);
 
         gunAnim.SetBool("isFiring", isFiring);
-
-
     }
 
     private void Flip()
@@ -184,5 +166,4 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawLine(transform.position, new Vector3(transform.position.x,transform.position.y - groundCheckDistance));
     }
-
 }
