@@ -32,8 +32,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private BulletController bulletPrefab;
 
-    public GameObject debugPos;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -73,15 +71,8 @@ public class PlayerController : MonoBehaviour
     private void Aim()
     {
         Vector3 mousePosition = Input.mousePosition;
-        mousePosition.z = Camera.main.nearClipPlane;
+        mousePosition.z = transform.position.z - Camera.main.transform.position.z;
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        if (debugPos)
-        {
-            debugPos.transform.position = mouseWorldPosition;
-        }
-
-        Debug.Log("Line reached");
 
         float angle = Mathf.Atan2(mouseWorldPosition.y - gunTransform.position.y, mouseWorldPosition.x - gunTransform.position.x) * Mathf.Rad2Deg;
 
