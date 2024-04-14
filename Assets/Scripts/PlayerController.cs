@@ -54,7 +54,12 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            isFiring = true;
             Shoot();
+        }
+        else
+        {
+           
         }
         
         Aim();
