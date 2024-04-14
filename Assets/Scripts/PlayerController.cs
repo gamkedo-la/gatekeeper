@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     [SerializeField] private Animator playerAnim;
-    [SerializeField] private Animator gunAnim;
 
     private float xInput;
     private int facingDirection = 1;
@@ -59,7 +58,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-           
+            isFiring = false;
         }
         
         Aim();
@@ -143,8 +142,7 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("isMoving", isMoving);
         playerAnim.SetBool("isGrounded", isGrounded);
         playerAnim.SetBool("isCrouched", isCrouched);
-
-        gunAnim.SetBool("isFiring", isFiring);
+        playerAnim.SetBool("isFiring", isFiring);
     }
 
     private void Flip()
