@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if(gunResetCount > .02)
+            if(gunResetCount > .05)
             {
                 isFiring = false;
             }
