@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private BulletController bulletPrefab;
 
+    [Header("Shoulder Points")]
+    [SerializeField] private Transform standingShoulderPoint;
+    [SerializeField] private Transform crouchShoulderPoint;
+    [SerializeField] private Transform jumpFallShoulderPoint;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -69,6 +75,18 @@ public class PlayerController : MonoBehaviour
                 isFiring = false;
             }
             
+        }
+
+        if (!isGrounded)
+        {
+            gunTransform.position = jumpFallShoulderPoint.position;
+        }else if (isCrouched)
+        {
+            gunTransform.position = crouchShoulderPoint.position;
+        }
+        else
+        {
+            gunTransform.position = standingShoulderPoint.position;
         }
         
         Aim();
