@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce;
 
     [SerializeField] private Animator playerAnim;
+    [SerializeField] private Animator gunAnim;
 
     private float xInput;
     private int facingDirection = 1;
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isCrouched;
     private bool isFiring;
+
+    private float gunResetCount;
 
     [Header("Gun")]
     [SerializeField] private Transform gunTransform;
@@ -51,14 +54,21 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        gunResetCount += Time.deltaTime;
+
         if (Input.GetMouseButtonDown(0))
         {
             isFiring = true;
             Shoot();
+            gunResetCount = 0;
         }
         else
         {
-            isFiring = false;
+            if(gunResetCount > .02)
+            {
+                isFiring = false;
+            }
+            
         }
         
         Aim();
@@ -142,7 +152,7 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("isMoving", isMoving);
         playerAnim.SetBool("isGrounded", isGrounded);
         playerAnim.SetBool("isCrouched", isCrouched);
-        playerAnim.SetBool("isFiring", isFiring);
+        gunAnim.SetBool("isFiring", isFiring);
     }
 
     private void Flip()
