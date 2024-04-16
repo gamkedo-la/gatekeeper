@@ -33,11 +33,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform muzzleTransform;
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private BulletController bulletPrefab;
-
-    [Header("Shoulder Points")]
-    [SerializeField] private Transform standingShoulderPoint;
-    [SerializeField] private Transform crouchShoulderPoint;
-    [SerializeField] private Transform jumpFallShoulderPoint;
+    [Header("Gun Sounds")]
+    [SerializeField] private AudioSource singleGunShotSound;
 
 
     void Start()
@@ -48,7 +45,7 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position, 10f);
-
+        singleGunShotSound.Play();
         if (raycastHit2D.collider != null)
         {
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
@@ -76,19 +73,7 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-
-        if (!isGrounded)
-        {
-            gunTransform.position = jumpFallShoulderPoint.position;
-        }else if (isCrouched)
-        {
-            gunTransform.position = crouchShoulderPoint.position;
-        }
-        else
-        {
-            gunTransform.position = standingShoulderPoint.position;
-        }
-        
+       
         Aim();
 
         Movement();
@@ -171,6 +156,8 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("isGrounded", isGrounded);
         playerAnim.SetBool("isCrouched", isCrouched);
         gunAnim.SetBool("isFiring", isFiring);
+        gunAnim.SetBool("isCrouched", isCrouched);
+        gunAnim.SetBool("isGrounded", isGrounded);
     }
 
     private void Flip()
