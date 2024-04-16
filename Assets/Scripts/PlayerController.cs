@@ -33,6 +33,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform muzzleTransform;
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private BulletController bulletPrefab;
+    [SerializeField] private LineRenderer lineRenderer;
+
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
 
@@ -45,13 +47,23 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position, 10f);
+
         singleGunShotSound.Play();
         if (raycastHit2D.collider != null)
         {
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
+            lineRenderer.SetPosition(0, muzzleTransform.position);
+            lineRenderer.SetPosition(1, raycastHit2D.collider.transform.position);
+            Debug.DrawLine(muzzleTransform.position, bulletTargetTransform.position, Color.red, .1f);
+        }
+        else
+        {
+            lineRenderer.SetPosition(0, muzzleTransform.position);
+            lineRenderer.SetPosition(1, muzzleTransform.position + muzzleTransform.right * 100);
+            Debug.DrawLine(muzzleTransform.position, bulletTargetTransform.position, Color.blue, .1f);
         }
         
-        Debug.DrawLine(muzzleTransform.position, bulletTargetTransform.position,Color.white,.1f);
+        //
     }
 
 
