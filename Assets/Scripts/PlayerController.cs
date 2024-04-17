@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private void Shoot()
     {
         RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position);
-
+        
         singleGunShotSound.Play();
         if (raycastHit2D.collider != null)
         {
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             lineRenderer.SetPosition(0, muzzleTransform.position);
-            lineRenderer.SetPosition(1, muzzleTransform.position + muzzleTransform.right * 100);
+            lineRenderer.SetPosition(1, bulletTargetTransform.position);
             Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position, Color.blue, .1f);
         }
         
