@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform muzzleTransform;
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private GameObject muzzleFlashSprite;
 
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void Shoot()
+    IEnumerator Shoot()
     {
         RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position);
         
@@ -53,16 +54,22 @@ public class PlayerController : MonoBehaviour
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, raycastHit2D.point);
-            Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.red, .1f);
+            //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.red, .1f);
         }
         else
         {
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, bulletTargetTransform.position);
-            Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.blue, .1f);
+            //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.blue, .1f);
         }
-        
-        //
+
+        lineRenderer.enabled = true;
+        muzzleFlashSprite.SetActive(true);
+        yield return new WaitForSeconds(0.02f);
+
+        lineRenderer.enabled = false;
+        muzzleFlashSprite.SetActive(false);
+        isFiring = false;
     }
 
 
@@ -74,17 +81,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             isFiring = true;
-            Shoot();
-            gunResetCount = 0;
+            StartCoroutine(Shoot());
+
         }
-        else
-        {
-            if(gunResetCount > .05)
-            {
-                isFiring = false;
-            }
-            
-        }
+        
        
         Aim();
 
