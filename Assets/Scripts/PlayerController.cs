@@ -54,7 +54,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, raycastHit2D.point);
-            //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.red, .1f);
+            if(raycastHit2D.collider.gameObject.layer == 9)
+            {
+                Debug.Log("Object Hit");
+                raycastHit2D.collider.gameObject.GetComponent<DestructableObject>().TakeDamage(3);
+            }
         }
         else
         {
