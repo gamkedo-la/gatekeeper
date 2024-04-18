@@ -32,7 +32,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform gunTransform;
     [SerializeField] private Transform muzzleTransform;
     [SerializeField] private Transform bulletTargetTransform;
-    [SerializeField] private BulletController bulletPrefab;
     [SerializeField] private LineRenderer lineRenderer;
 
     [Header("Gun Sounds")]
@@ -46,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot()
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position);
+        RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position);
         
         singleGunShotSound.Play();
         if (raycastHit2D.collider != null)
@@ -54,13 +53,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, raycastHit2D.point);
-            Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position, Color.red, .1f);
+            Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.red, .1f);
         }
         else
         {
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, bulletTargetTransform.position);
-            Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position, Color.blue, .1f);
+            Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.blue, .1f);
         }
         
         //
@@ -69,6 +68,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.green, .1f);
         gunResetCount += Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0))
