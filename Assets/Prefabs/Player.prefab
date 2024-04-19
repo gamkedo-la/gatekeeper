@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5675988586330235517
 Transform:
   m_ObjectHideFlags: 0
@@ -564,6 +564,11 @@ MonoBehaviour:
   bulletTargetTransform: {fileID: 8793089180124261175}
   lineRenderer: {fileID: 7224745121700633202}
   muzzleFlashSprite: {fileID: 164706908718854730}
+  bulletImpactFX: {fileID: 1053540278431116677, guid: 500b9c4d8a7b77b48814d3070dbbcb38, type: 3}
+  footstepFX: {fileID: 0}
+  landFX: {fileID: 0}
+  jumpFX: {fileID: 0}
+  gotHitFX: {fileID: 0}
   singleGunShotSound: {fileID: 8314491506666275826}
 --- !u!70 &390819850819649408
 CapsuleCollider2D:
