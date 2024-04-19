@@ -565,10 +565,11 @@ MonoBehaviour:
   lineRenderer: {fileID: 7224745121700633202}
   muzzleFlashSprite: {fileID: 164706908718854730}
   bulletImpactFX: {fileID: 1053540278431116677, guid: 500b9c4d8a7b77b48814d3070dbbcb38, type: 3}
-  footstepFX: {fileID: 0}
-  landFX: {fileID: 0}
-  jumpFX: {fileID: 0}
-  gotHitFX: {fileID: 0}
+  objectImpactFX: {fileID: 1053540278431116677, guid: 12f677d20346bc4479c0486128687ab2, type: 3}
+  footstepFX: {fileID: 48133107200676294, guid: 0ff9ecf1dd36ed84b8d6c70162427ca7, type: 3}
+  landFX: {fileID: 48133107200676294, guid: 0ff9ecf1dd36ed84b8d6c70162427ca7, type: 3}
+  jumpFX: {fileID: 48133107200676294, guid: 0ff9ecf1dd36ed84b8d6c70162427ca7, type: 3}
+  gotHitFX: {fileID: 1053540278431116677, guid: 12f677d20346bc4479c0486128687ab2, type: 3}
   singleGunShotSound: {fileID: 8314491506666275826}
 --- !u!70 &390819850819649408
 CapsuleCollider2D:
