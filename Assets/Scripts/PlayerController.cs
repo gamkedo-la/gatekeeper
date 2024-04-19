@@ -26,8 +26,6 @@ public class PlayerController : MonoBehaviour
     private bool isCrouched;
     private bool isFiring;
 
-    private float gunResetCount;
-
     [Header("Gun")]
     [SerializeField] private Transform gunTransform;
     [SerializeField] private Transform muzzleTransform;
@@ -92,8 +90,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.green, .1f);
-        gunResetCount += Time.deltaTime;
-
         if (Input.GetMouseButtonDown(0))
         {
             isFiring = true;
