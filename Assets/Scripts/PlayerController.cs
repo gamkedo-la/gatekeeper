@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     
 	[Header("Particle Effect Prefabs")]
 	[SerializeField] private GameObject bulletImpactFX;
+	[SerializeField] private GameObject objectImpactFX;
 	[SerializeField] private GameObject footstepFX;
 	[SerializeField] private GameObject landFX;
 	[SerializeField] private GameObject jumpFX;
@@ -68,6 +69,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("Object Hit");
                 raycastHit2D.collider.gameObject.GetComponent<DestructableObject>().TakeDamage(3);
+				if (objectImpactFX) Instantiate(objectImpactFX,raycastHit2D.point,Quaternion.identity);
             }
         }
         else
@@ -170,6 +172,9 @@ public class PlayerController : MonoBehaviour
         if(isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+			// emit a puff of dust offset to foot position
+			if (jumpFX) Instantiate(jumpFX,new Vector2(transform.position.x,transform.position.y-1.5f),Quaternion.identity);
+
         }
     }
 
