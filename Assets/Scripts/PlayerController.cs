@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform muzzleTransform;
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private Transform ejectionPointTransform;
     
 	[Header("Particle Effect Prefabs")]
 	[SerializeField] private GameObject bulletImpactFX;
@@ -41,7 +42,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject landFX;
 	[SerializeField] private GameObject jumpFX;
 	[SerializeField] private GameObject gotHitFX;
-    [SerializeField] private ParticleSystem bulletCasingEmitter;
+    [SerializeField] private GameObject bulletCasingEjectionFX;
 
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
@@ -62,10 +63,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, raycastHit2D.point);
-            bulletCasingEmitter.Play();
-			// fixme, we can maybe orient the fx with the impact normal
-			// Quaternion.fromVector2D(raycastHit2D.normal)); or something?
-			if (bulletImpactFX) Instantiate(bulletImpactFX,raycastHit2D.point,Quaternion.identity);
+            if (bulletCasingEjectionFX) Instantiate(bulletCasingEjectionFX, ejectionPointTransform.position, ejectionPointTransform.rotation);
+            // fixme, we can maybe orient the fx with the impact normal
+            // Quaternion.fromVector2D(raycastHit2D.normal)); or something?
+            if (bulletImpactFX) Instantiate(bulletImpactFX,raycastHit2D.point,Quaternion.identity);
             if(raycastHit2D.collider.gameObject.layer == 9)
             {
                 Debug.Log("Object Hit");
