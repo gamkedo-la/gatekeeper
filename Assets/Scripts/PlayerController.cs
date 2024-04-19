@@ -33,7 +33,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform muzzleTransform;
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private GameObject muzzleFlashSprite;
     
 	[Header("Particle Effect Prefabs")]
 	[SerializeField] private GameObject bulletImpactFX;
@@ -42,6 +41,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject landFX;
 	[SerializeField] private GameObject jumpFX;
 	[SerializeField] private GameObject gotHitFX;
+    [SerializeField] private ParticleSystem bulletCasingEmitter;
 
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, raycastHit2D.point);
+            bulletCasingEmitter.Play();
 			// fixme, we can maybe orient the fx with the impact normal
 			// Quaternion.fromVector2D(raycastHit2D.normal)); or something?
 			if (bulletImpactFX) Instantiate(bulletImpactFX,raycastHit2D.point,Quaternion.identity);
@@ -80,11 +81,9 @@ public class PlayerController : MonoBehaviour
         }
 
         lineRenderer.enabled = true;
-        muzzleFlashSprite.SetActive(true);
         yield return new WaitForSeconds(0.02f);
 
         lineRenderer.enabled = false;
-        muzzleFlashSprite.SetActive(false);
         isFiring = false;
     }
 
