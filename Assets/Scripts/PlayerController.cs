@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position);
         
         singleGunShotSound.Play();
-        if (raycastHit2D.collider != null)
+        if (raycastHit2D.collider != null && raycastHit2D.collider.gameObject.layer != 3)
         {
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
