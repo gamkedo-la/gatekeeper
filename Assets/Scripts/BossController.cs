@@ -25,8 +25,8 @@ public class BossController : MonoBehaviour
             if (angle < 0) angle += 360;
             angle = Mathf.Clamp(angle, 90, 270);
 
-            rightArm.rotation = Quaternion.Euler(180, 0, -angle);
-            leftArm.rotation = Quaternion.Euler(180, 0, -angle);
+            rightArm.rotation = Quaternion.Euler(180, -180, angle);
+            leftArm.rotation = Quaternion.Euler(180, -180, angle);
         }
         else if (facingRight)
         {
