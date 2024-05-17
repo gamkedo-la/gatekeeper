@@ -7,15 +7,23 @@ public class BossController : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private Transform rightArm;
     [SerializeField] private Transform leftArm;
+    [SerializeField] private Transform bossBasePoint;
+    [SerializeField] private List<Transform> waypoints;
+    [SerializeField] private Rigidbody2D rigidbody2DBody;
+    private Vector3 velocity;
 
     private bool facingRight = false;
 
     void Start()
     {
-        
+        velocity = new Vector3(1.75f, 1.1f,0.0f);
     }
 
-    
+    private void FixedUpdate()
+    {
+        rigidbody2DBody.transform.position = Vector3.Lerp(rigidbody2DBody.transform.position, waypoints[3].position,.1f);
+    }
+
     void Update()
     {
         float angle = Mathf.Atan2(player.transform.position.y - rightArm.position.y, player.transform.position.x - rightArm.position.x) * Mathf.Rad2Deg;
@@ -35,5 +43,6 @@ public class BossController : MonoBehaviour
             rightArm.rotation = Quaternion.Euler(0, 0, angle);
             leftArm.rotation = Quaternion.Euler(0, 0, angle);
         }
+
     }
 }
