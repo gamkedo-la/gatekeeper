@@ -4367,6 +4367,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 746000021895321406, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: dashSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 746000021895321406, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: dashCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 746000021895321406, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: dashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 746000021895321406, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: bulletCasingEmitter
       value: 
       objectReference: {fileID: 0}

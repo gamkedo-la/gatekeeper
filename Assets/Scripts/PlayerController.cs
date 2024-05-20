@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator playerAnim;
     [SerializeField] private Animator gunAnim;
 
+    [SerializeField] private float dashSpeed;
+    [SerializeField] private float dashCooldown;
+    [SerializeField] private float dashDuration;
+
     private float xInput;
     private int facingDirection = 1;
     private bool facingRight = true;
@@ -25,6 +29,11 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isCrouched;
     private bool isFiring;
+    private bool isDashing;
+
+    private float dashDirection;
+    private float dashActivationTimer;
+    private float dashCooldownTimer;
 
     [Header("Gun")]
     [SerializeField] private Transform gunTransform;
@@ -49,6 +58,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dashCooldownTimer = dashCooldown;
     }
 
     IEnumerator Shoot()
@@ -156,10 +166,60 @@ public class PlayerController : MonoBehaviour
         {
             isCrouched = false;
         }
+
+        if(dashDirection != 0)
+        {
+            dashActivationTimer += Time.deltaTime;
+        }
+
+        dashCooldownTimer += Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.D) && !isDashing && dashCooldownTimer >= dashCooldown)
+        {
+            if(dashDirection == 0)
+            {
+                dashDirection = 1f;
+                dashActivationTimer = 0;
+                return;
+            }
+
+            isDashing = true;
+            dashCooldownTimer = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.A) && !isDashing && dashCooldownTimer >= dashCooldown)
+        {
+            if (dashDirection == 0)
+            {
+                dashDirection = -1f;
+                dashActivationTimer = 0;
+                return;
+            }
+
+            isDashing = true;
+            dashCooldownTimer = 0;
+        }
+
+        if (!isDashing && dashActivationTimer > 0.5f)
+        {
+            dashDirection = 0;
+        }
+
+        if(dashCooldownTimer > dashDuration)
+        {
+            isDashing = false;
+        }
+        
     }
 
     private void Movement()
     {
+        Debug.Log(isDashing);
+        if (isDashing)
+        {
+            rb.velocity = new Vector2(dashDirection * dashSpeed, 0);
+            return;
+        }
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
     }
 
@@ -182,6 +242,7 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("isMoving", isMoving);
         playerAnim.SetBool("isGrounded", isGrounded);
         playerAnim.SetBool("isCrouched", isCrouched);
+        playerAnim.SetBool("isDashing", isDashing);
         gunAnim.SetBool("isFiring", isFiring);
         gunAnim.SetBool("isCrouched", isCrouched);
         gunAnim.SetBool("isGrounded", isGrounded);
