@@ -131,7 +131,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.5178558, y: 0.02235818}
+      pivot: {x: 0.5170318, y: 0.023111343}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,8 +151,8 @@ TextureImporter:
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5170318, y: 0.02311134}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -172,8 +172,8 @@ TextureImporter:
         y: 192
         width: 64
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5170318, y: 0.02311134}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -194,7 +194,7 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.50393057, y: 0.020487547}
+      pivot: {x: 0.5170318, y: 0.02311134}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: tankbotv1.2_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 0
         y: 128
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.6189747, y: 0.4750021}
+      pivot: {x: 0.5170318, y: 0.02311134}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: tankbotv1.2_5
       rect:
         serializedVersion: 2
-        x: 192
+        x: 64
         y: 128
         width: 64
         height: 64
       alignment: 9
-      pivot: {x: 0.6189747, y: 0.4750021}
+      pivot: {x: 0.48418736, y: 0.5333142}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -244,6 +244,111 @@ TextureImporter:
       bones: []
       spriteID: 10b952e5c7a049c4880552e3afd22758
       internalID: -267747125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tankbotv1.2_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.6362541, y: 0.44549847}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab00b8c269b978049933ca3835ab0155
+      internalID: 1164603770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tankbotv1.2_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.6226287, y: 0.47274923}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dd1f2dd3db11c64ab9b7e5fb94fb2b7
+      internalID: 1520681634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tankbotv1.2_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3863523, y: 0.5532477}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57db16de5226d5046a66adc451bd259f
+      internalID: 639569263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tankbotv1.2_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.41736805, y: 0.5544162}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60b1d46e7fced3a4b941b994ba8a3425
+      internalID: 1734998477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tankbotv1.2_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.46093774, y: 0.48437512}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e09a77dc1cddf4590244536e3f7c57
+      internalID: -688294769
       vertices: []
       indices: 
       edges: []
@@ -261,10 +366,15 @@ TextureImporter:
     nameFileIdTable:
       tankbotv1.2_0: 1422617643
       tankbotv1.2_1: -851909195
+      tankbotv1.2_10: -688294769
       tankbotv1.2_2: -1366573603
       tankbotv1.2_3: -18148601
       tankbotv1.2_4: -777836479
       tankbotv1.2_5: -267747125
+      tankbotv1.2_6: 1164603770
+      tankbotv1.2_7: 1520681634
+      tankbotv1.2_8: 639569263
+      tankbotv1.2_9: 1734998477
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
