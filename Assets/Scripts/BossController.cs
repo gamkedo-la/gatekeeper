@@ -5,9 +5,12 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject rocket;
+    [SerializeField] private GameObject grenade;
     [SerializeField] private Transform rightArm;
     [SerializeField] private Transform leftArm;
-    [SerializeField] private Transform bossBasePoint;
+    [SerializeField] private Transform grenadeSpawnPoint;
+    [SerializeField] private Transform rocketSpawnPoint;
     [SerializeField] private List<Transform> waypoints;
     [SerializeField] private Rigidbody2D rigidbody2DBody;
     private Vector3 velocity;
@@ -26,6 +29,18 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
+        Aim();
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+        }
+        
+
+    }
+
+    private void Aim()
+    {
         float angle = Mathf.Atan2(player.transform.position.y - rightArm.position.y, player.transform.position.x - rightArm.position.x) * Mathf.Rad2Deg;
 
         if (!facingRight)
@@ -43,6 +58,5 @@ public class BossController : MonoBehaviour
             rightArm.rotation = Quaternion.Euler(0, 0, angle);
             leftArm.rotation = Quaternion.Euler(0, 0, angle);
         }
-
     }
 }

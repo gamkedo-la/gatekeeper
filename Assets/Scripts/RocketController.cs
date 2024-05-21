@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    [SerializeField] private Transform target { get; set; }
     [SerializeField] private Rigidbody2D rigidbody2D;
-    [SerializeField] private Transform rocketRangeStart;
-    [SerializeField] private Transform rocketRangeEnd;
+    [SerializeField] private Transform rocketRangeStart { get; set; }
+    [SerializeField] private Transform rocketRangeEnd { get; set; }
     private bool hitTarget = false;
+
+
 
     void Start()
     {
