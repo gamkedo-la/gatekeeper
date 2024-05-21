@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    [SerializeField] private int health;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpForce;
@@ -54,9 +56,14 @@ public class PlayerController : MonoBehaviour
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
 
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+    }
 
     void Start()
     {
+        health = 100;
         rb = GetComponent<Rigidbody2D>();
         dashCooldownTimer = dashCooldown;
     }

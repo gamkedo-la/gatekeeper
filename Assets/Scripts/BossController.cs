@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    [SerializeField] private int health;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject grenade;
@@ -18,8 +19,14 @@ public class BossController : MonoBehaviour
 
     private bool facingRight = false;
 
+    public void takeDamage(int damage)
+    {
+        health -= damage;
+    }
+
     void Start()
     {
+        health = 1000;
         velocity = new Vector3(1.75f, 1.1f,0.0f);
     }
 
