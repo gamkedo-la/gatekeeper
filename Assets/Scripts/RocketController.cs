@@ -4,30 +4,43 @@ using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
-    [SerializeField] private Transform target { get; set; }
+    [SerializeField] private Transform target;
+    [SerializeField] private Transform rocketRangeStart;
+    [SerializeField] private Transform rocketRangeEnd;
     [SerializeField] private Rigidbody2D rigidbody2D;
-    [SerializeField] private Transform rocketRangeStart { get; set; }
-    [SerializeField] private Transform rocketRangeEnd { get; set; }
-    private bool hitTarget = false;
+    private float flyCount;
+    private float flyCountMax;
 
+    public void setTarget(Transform target)
+    {
+        this.target = target;
+    }
 
+    public Transform getTarget() { return this.target; }
 
     void Start()
     {
+        flyCount = 0;
+        flyCountMax = 8;
+        target.position = new Vector3(Random.Range(rocketRangeStart.position.x, rocketRangeEnd.position.x), Random.Range(rocketRangeStart.position.y, rocketRangeEnd.position.y), 0);
+    }
+
+    void Awake()
+    {
+        rigidbody2D.velocity = new Vector2(0, 10);
+
     }
 
     void FixedUpdate()
     {
-        rigidbody2D.transform.position = Vector3.Lerp(rigidbody2D.transform.position, target.position, .10f);
+        flyCount += Time.deltaTime;
+        if(flyCount > flyCountMax)
+        {
+            rigidbody2D.transform.position = Vector3.Lerp(rigidbody2D.transform.position, target.position, .10f);
+            Vector3 dir = target.position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
 
-        Vector3 dir = target.position - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        if (Vector3.Distance(transform.position, target.position) <= 1 && !hitTarget)
-              {
-                  target.position = new Vector3(Random.Range(rocketRangeStart.position.x, rocketRangeEnd.position.x), Random.Range(rocketRangeStart.position.y, rocketRangeEnd.position.y), 0);
-
-                  hitTarget = true;
-              }
     }
 }

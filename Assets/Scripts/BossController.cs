@@ -11,6 +11,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform leftArm;
     [SerializeField] private Transform grenadeSpawnPoint;
     [SerializeField] private Transform rocketSpawnPoint;
+    [SerializeField] private Transform rocketSkyPoint;
     [SerializeField] private List<Transform> waypoints;
     [SerializeField] private Rigidbody2D rigidbody2DBody;
     private Vector3 velocity;
@@ -35,7 +36,14 @@ public class BossController : MonoBehaviour
         {
             Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GameObject rocketObject = Instantiate(rocket, rocketSpawnPoint.position, Quaternion.identity);
+            rocketObject.transform.rotation = Quaternion.Euler(0, 0, 90);
+            rocketObject.GetComponentInChildren<RocketController>().setTarget(rocketSkyPoint);
+        }
+
 
     }
 
