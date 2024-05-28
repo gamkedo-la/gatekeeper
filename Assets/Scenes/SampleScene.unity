@@ -1819,6 +1819,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138561113}
   m_CullTransparentMesh: 1
+--- !u!114 &1146588766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 317964840634771963, guid: e98fee781f08d314f848254f1174a069, type: 3}
+  m_PrefabInstance: {fileID: 2004707725469176622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f89dfc6f8e3e04bbfa48b039e05459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1181332061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3676,6 +3687,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 839583927}
     m_Modifications:
+    - target: {fileID: 316621859595096594, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 316621859595096594, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.13
+      objectReference: {fileID: 0}
     - target: {fileID: 510158989023979168, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -3692,6 +3711,10 @@ PrefabInstance:
       propertyPath: dashDuration
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 746000021895321406, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: dashEffectFX
+      value: 
+      objectReference: {fileID: 1146588766}
     - target: {fileID: 746000021895321406, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: bulletCasingEmitter
       value: 
@@ -3719,6 +3742,26 @@ PrefabInstance:
     - target: {fileID: 2189037285872567075, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955059520350428415, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955059520350428415, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955059520350428415, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
+      value: 0.57262576
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955059520350428415, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.5031452
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955059520350428415, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3991088499434409907, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: m_Name
