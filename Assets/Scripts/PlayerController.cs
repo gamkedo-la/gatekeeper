@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject jumpFX;
 	[SerializeField] private GameObject gotHitFX;
     [SerializeField] private GameObject bulletCasingEjectionFX;
+    [SerializeField] private DashEffect dashEffectFX;
 
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
@@ -181,7 +182,7 @@ public class PlayerController : MonoBehaviour
 
         dashCooldownTimer += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.D) && !isDashing && dashCooldownTimer >= dashCooldown)
+        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && !isDashing && dashCooldownTimer >= dashCooldown)
         {
             if(dashDirection == 0)
             {
@@ -191,10 +192,12 @@ public class PlayerController : MonoBehaviour
             }
 
             isDashing = true;
+            dashEffectFX.SetEnabled(true);
+
             dashCooldownTimer = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.A) && !isDashing && dashCooldownTimer >= dashCooldown)
+        if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && !isDashing && dashCooldownTimer >= dashCooldown)
         {
             if (dashDirection == 0)
             {
@@ -204,6 +207,7 @@ public class PlayerController : MonoBehaviour
             }
 
             isDashing = true;
+            dashEffectFX.SetEnabled(true);
             dashCooldownTimer = 0;
         }
 
@@ -215,13 +219,13 @@ public class PlayerController : MonoBehaviour
         if(dashCooldownTimer > dashDuration)
         {
             isDashing = false;
+            dashEffectFX.SetEnabled(false);
         }
         
     }
 
     private void Movement()
     {
-        Debug.Log(isDashing);
         if (isDashing)
         {
             rb.velocity = new Vector2(dashDirection * dashSpeed, 0);
