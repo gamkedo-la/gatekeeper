@@ -8,6 +8,7 @@ public class RocketController : MonoBehaviour
     [SerializeField] private Transform rocketRangeStart;
     [SerializeField] private Transform rocketRangeEnd;
     [SerializeField] private Rigidbody2D rigidbody2D;
+    [SerializeField] private GameObject explosionPrefabFX;
     private float flyCount;
     private float flyCountMax;
 
@@ -41,6 +42,14 @@ public class RocketController : MonoBehaviour
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
+        blast.transform.position = transform.position;
+        Destroy(gameObject);
 
     }
 }

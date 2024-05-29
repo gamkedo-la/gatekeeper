@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2372751793028716009}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -198,7 +198,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3431368863925936100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BossWaypoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593814197820053542}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MiddlePoint
   m_TagString: Untagged
   m_Icon: {fileID: 2488908585195742037, guid: 0000000000000000d000000000000000, type: 0}
@@ -585,7 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5263402137171804748}
   - component: {fileID: 6337897923488927123}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GrenadeLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -669,7 +669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5422694121376522945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,7 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4266650401486843855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GrenadeSpawnLocation
   m_TagString: Untagged
   m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
@@ -800,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01203a4a8162454388c51ba5536ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   player: {fileID: 0}
   rocket: {fileID: 6353319983205736833, guid: 211d6763ae9b0c042ab9c6a3c85afe7f, type: 3}
   grenade: {fileID: 6835487311071705408, guid: 64c8025b584e89d4b94132f8a99309d2, type: 3}
@@ -823,7 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4129765187234184863}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JumpPoint
   m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
@@ -854,7 +855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8289172975358586952}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}

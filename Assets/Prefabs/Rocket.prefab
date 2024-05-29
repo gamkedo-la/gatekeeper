@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1466195725391814035}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6642394033047575019}
   - component: {fileID: 8065708484926678381}
   - component: {fileID: 4170138129886920345}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RocketObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,10 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bbdf09c53959254dade61c0ae677abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   rocketRangeStart: {fileID: 7604296358855853280}
   rocketRangeEnd: {fileID: 9105775188194700325}
   rigidbody2D: {fileID: 6642394033047575019}
+  explosionPrefabFX: {fileID: 1053540278431116677, guid: bd8411052a971dc4ab61df3d5a04e60b, type: 3}
 --- !u!1 &8698186997100361324
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +209,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9105775188194700325}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: RocketTargetRangeEnd
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -239,7 +240,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604296358855853280}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: RocketTargetRangeStart
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
