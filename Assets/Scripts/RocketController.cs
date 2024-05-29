@@ -49,6 +49,16 @@ public class RocketController : MonoBehaviour
     {
         GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
         blast.transform.position = transform.position;
+        Collider2D[] nearBy = Physics2D.OverlapCircleAll(transform.position, 3f);
+        for(int i = 0; i < nearBy.Length;i++)
+        {
+            //Debug.Log(nearBy[i].name);
+            PlayerController pcScript = nearBy[i].GetComponent<PlayerController>();
+            if(pcScript != null)
+            {
+                pcScript.takeDamage(10);
+            }
+        }
         Destroy(gameObject);
 
     }
