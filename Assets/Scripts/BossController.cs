@@ -48,7 +48,7 @@ public class BossController : MonoBehaviour
         {
             GameObject rocketObject = Instantiate(rocket, rocketSpawnPoint.position, Quaternion.identity);
             rocketObject.transform.rotation = Quaternion.Euler(0, 0, 90);
-            rocketObject.GetComponentInChildren<RocketController>().setTarget(rocketSkyPoint);
+            rocketObject.GetComponentInChildren<RocketController>().setTarget(rocketSkyPoint.position);
         }
 
 

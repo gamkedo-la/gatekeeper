@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    [SerializeField] private Vector3 target;
     [SerializeField] private Transform rocketRangeStart;
     [SerializeField] private Transform rocketRangeEnd;
     [SerializeField] private Rigidbody2D rigidbody2D;
     private float flyCount;
     private float flyCountMax;
 
-    public void setTarget(Transform target)
+    public void setTarget(Vector3 target)
     {
         this.target = target;
     }
 
-    public Transform getTarget() { return this.target; }
+    public Vector3 getTarget() { return this.target; }
 
     void Start()
     {
         flyCount = 0;
         flyCountMax = 2;
-        target.position = new Vector3(Random.Range(rocketRangeStart.position.x, rocketRangeEnd.position.x), Random.Range(rocketRangeStart.position.y, rocketRangeEnd.position.y), 0);
+        target = new Vector3(Random.Range(rocketRangeStart.position.x, rocketRangeEnd.position.x), Random.Range(rocketRangeStart.position.y, rocketRangeEnd.position.y), 0);
     }
 
     void Awake()
@@ -36,8 +36,8 @@ public class RocketController : MonoBehaviour
         flyCount += Time.deltaTime;
         if(flyCount > flyCountMax)
         {
-            rigidbody2D.transform.position = Vector3.MoveTowards(rigidbody2D.transform.position, target.position, 1f);
-            Vector3 dir = target.position - transform.position;
+            rigidbody2D.transform.position = Vector3.MoveTowards(rigidbody2D.transform.position, target, 1f);
+            Vector3 dir = target - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
