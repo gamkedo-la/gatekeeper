@@ -10,6 +10,7 @@ public class RocketController : MonoBehaviour
     [SerializeField] private Transform rocketRangeEnd;
     [SerializeField] private Rigidbody2D rigidbody2D;
     [SerializeField] private GameObject explosionPrefabFX;
+    [SerializeField] private AudioSource explosionSfx;
     private float flyCount;
     private float flyCountMax;
 
@@ -48,6 +49,7 @@ public class RocketController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        explosionSfx.Play();
         GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
         blast.transform.position = transform.position;
         Collider2D[] nearBy = Physics2D.OverlapCircleAll(transform.position, 3f);

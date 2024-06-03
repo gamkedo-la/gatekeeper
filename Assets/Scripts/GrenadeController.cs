@@ -7,6 +7,7 @@ public class GrenadeController : MonoBehaviour
 
     [SerializeField] private Rigidbody2D rigidbody2D;
     [SerializeField] private GameObject explosionPrefabFX;
+    [SerializeField] private AudioSource explosionSfx;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class GrenadeController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        explosionSfx.Play();
         GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
         blast.transform.position = transform.position;
         Collider2D[] nearBy = Physics2D.OverlapCircleAll(transform.position, 3f);
