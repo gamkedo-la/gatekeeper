@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    [Header("Health")]
     [SerializeField] private int health;
+    [SerializeField] private Slider slider;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed;
@@ -60,11 +63,18 @@ public class PlayerController : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
+        slider.value -= damage;
+        if(slider.value <= 0 ) 
+        {
+            slider.gameObject.GetComponentInChildren<Image>().enabled = false;
+        }
     }
 
     void Start()
     {
-        health = 100;
+        slider.minValue = 0;
+        slider.maxValue = health;
+        slider.value = health;
         rb = GetComponent<Rigidbody2D>();
         dashCooldownTimer = dashCooldown;
     }
@@ -76,6 +86,10 @@ public class PlayerController : MonoBehaviour
         singleGunShotSound.Play();
         if (raycastHit2D.collider != null && raycastHit2D.collider.gameObject.layer != 3)
         {
+            if(raycastHit2D.collider.gameObject.layer == 7)
+            {
+                raycastHit2D.collider.gameObject.GetComponentInParent<BossController>().takeDamage(15);
+            }
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, raycastHit2D.point);

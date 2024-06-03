@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 305022314960766751}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.16, y: -1.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,19 +91,28 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.99
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.5031452
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.57262576
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -161,7 +170,7 @@ GameObject:
   - component: {fileID: 7577913481033058698}
   - component: {fileID: 2977027515228266381}
   - component: {fileID: 3741793869539088541}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DebugSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +411,7 @@ GameObject:
   - component: {fileID: 1645702458106605058}
   - component: {fileID: 231855094646383012}
   - component: {fileID: 5195925350280055788}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +427,7 @@ Transform:
   m_GameObject: {fileID: 2189037285872567075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.113, y: 0.64, z: 0}
+  m_LocalPosition: {x: -0.13, y: 0.623, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -513,7 +522,7 @@ GameObject:
   - component: {fileID: 390819850819649408}
   - component: {fileID: 3701021160472797840}
   - component: {fileID: 8314491506666275826}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,13 +562,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  maxHealth: 0
+  slider: {fileID: 0}
   moveSpeed: 4
   jumpForce: 15
   playerAnim: {fileID: 7627585242137740006}
   gunAnim: {fileID: 5195925350280055788}
-  dashSpeed: 0
-  dashCooldown: 0
-  dashDuration: 0
+  dashSpeed: 15
+  dashCooldown: 1
+  dashDuration: 0.5
   groundCheckDistance: 1.67
   groundMask:
     serializedVersion: 2
@@ -568,15 +579,15 @@ MonoBehaviour:
   muzzleTransform: {fileID: 8645746795570779487}
   bulletTargetTransform: {fileID: 8793089180124261175}
   lineRenderer: {fileID: 7224745121700633202}
-  ejectionPointTransform: {fileID: 0}
+  ejectionPointTransform: {fileID: 5270655454153621635}
   bulletImpactFX: {fileID: 1053540278431116677, guid: 500b9c4d8a7b77b48814d3070dbbcb38, type: 3}
   objectImpactFX: {fileID: 1053540278431116677, guid: 12f677d20346bc4479c0486128687ab2, type: 3}
   footstepFX: {fileID: 48133107200676294, guid: 0ff9ecf1dd36ed84b8d6c70162427ca7, type: 3}
   landFX: {fileID: 48133107200676294, guid: 0ff9ecf1dd36ed84b8d6c70162427ca7, type: 3}
   jumpFX: {fileID: 48133107200676294, guid: 0ff9ecf1dd36ed84b8d6c70162427ca7, type: 3}
   gotHitFX: {fileID: 1053540278431116677, guid: 12f677d20346bc4479c0486128687ab2, type: 3}
-  bulletCasingEjectionFX: {fileID: 0}
-  dashEffectFX: {fileID: 0}
+  bulletCasingEjectionFX: {fileID: 2580552711233990987, guid: 57c0861b04b0612409ac09395390a350, type: 3}
+  dashEffectFX: {fileID: 317964840634771963}
   singleGunShotSound: {fileID: 8314491506666275826}
 --- !u!70 &390819850819649408
 CapsuleCollider2D:
@@ -776,7 +787,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5270655454153621635}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EjectionPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -791,8 +802,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6629804621692523954}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.914, y: 0.069, z: 0}
+  m_LocalRotation: {x: -0.6760044, y: -0.20740807, z: 0.20740807, w: 0.6760044}
+  m_LocalPosition: {x: 0.914, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -808,7 +819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3781623044462083992}
   - component: {fileID: 7224745121700633202}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}

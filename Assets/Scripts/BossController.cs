@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private int health;
+    [SerializeField] private Slider slider;
+
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject grenade;
@@ -29,13 +33,18 @@ public class BossController : MonoBehaviour
     public void takeDamage(int damage)
     {
         health -= damage;
+        slider.value -= damage;
+        if (slider.value <= 0)
+        {
+            slider.gameObject.GetComponentInChildren<Image>().enabled = false;
+        }
     }
 
     void Start()
     {
-        grenadeAttackAmount = 6;
-        rocketAttackAmount = 6;
-        health = 1000;
+        slider.minValue = 0;
+        slider.maxValue = health;
+        slider.value = health;
         velocity = new Vector3(1.75f, 1.1f,0.0f);
 
     }
