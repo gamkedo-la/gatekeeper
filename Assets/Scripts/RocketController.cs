@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RocketController : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class RocketController : MonoBehaviour
         GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
         blast.transform.position = transform.position;
         Collider2D[] nearBy = Physics2D.OverlapCircleAll(transform.position, 3f);
-        for(int i = 0; i < nearBy.Length;i++)
+        for (int i = 0; i < nearBy.Length;i++)
         {
             //Debug.Log(nearBy[i].name);
             PlayerController pcScript = nearBy[i].GetComponent<PlayerController>();
@@ -62,4 +63,6 @@ public class RocketController : MonoBehaviour
         Destroy(gameObject);
 
     }
+
+
 }
