@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -15,6 +16,12 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform rocketSkyPoint;
     [SerializeField] private List<Transform> waypoints;
     [SerializeField] private Rigidbody2D rigidbody2DBody;
+
+    [Header("Attack Values")]
+    [SerializeField] private int grenadeAttackAmount;
+    [SerializeField] private int rocketAttackAmount;
+
+
     private Vector3 velocity;
 
     private bool facingRight = false;
@@ -26,8 +33,11 @@ public class BossController : MonoBehaviour
 
     void Start()
     {
+        grenadeAttackAmount = 6;
+        rocketAttackAmount = 6;
         health = 1000;
         velocity = new Vector3(1.75f, 1.1f,0.0f);
+
     }
 
     private void FixedUpdate()
@@ -41,7 +51,7 @@ public class BossController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+            StartCoroutine("GrenadeAttack", 1f);
         }
 
         if (Input.GetKeyDown(KeyCode.J))
@@ -74,4 +84,22 @@ public class BossController : MonoBehaviour
             leftArm.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
+
+    private void RocketAttack()
+    {
+
+    }
+
+    IEnumerator GrenadeAttack(float duration)
+    {
+
+        yield return new WaitForSeconds(duration);
+        Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+        yield return new WaitForSeconds(duration);
+        Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+        yield return new WaitForSeconds(duration);
+        Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+    }
+
+
 }
