@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
         dashCooldownTimer += Time.deltaTime;
 
-        if ((Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) && !isDashing && dashCooldownTimer >= dashCooldown)
+        if ((xInput > 0 && Input.GetKeyDown(KeyCode.LeftShift)) && !isDashing && dashCooldownTimer >= dashCooldown && isGrounded)
         {
             if(dashDirection == 0)
             {
@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
             dashCooldownTimer = 0;
         }
 
-        if ((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) && !isDashing && dashCooldownTimer >= dashCooldown)
+        if ((xInput < 0 && Input.GetKeyDown(KeyCode.LeftShift)) && !isDashing && dashCooldownTimer >= dashCooldown && isGrounded)
         {
             if (dashDirection == 0)
             {

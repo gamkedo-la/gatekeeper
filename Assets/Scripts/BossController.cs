@@ -51,7 +51,7 @@ public class BossController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody2DBody.transform.position = Vector3.Lerp(rigidbody2DBody.transform.position, waypoints[3].position,.1f);
+        rigidbody2DBody.transform.position = Vector3.MoveTowards(rigidbody2DBody.transform.position, waypoints[3].position,1f);
     }
 
     void Update()
