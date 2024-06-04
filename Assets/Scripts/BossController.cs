@@ -60,14 +60,12 @@ public class BossController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
         {
-            StartCoroutine("GrenadeAttack", 1f);
+            StartCoroutine("GrenadeAttack", 0.5f);
         }
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            GameObject rocketObject = Instantiate(rocket, rocketSpawnPoint.position, Quaternion.identity);
-            rocketObject.transform.rotation = Quaternion.Euler(0, 0, 90);
-            rocketObject.GetComponentInChildren<RocketController>().setTarget(rocketSkyPoint.position);
+            StartCoroutine("RocketAttack", 0.5f);
         }
 
 
@@ -94,20 +92,25 @@ public class BossController : MonoBehaviour
         }
     }
 
-    private void RocketAttack()
+    IEnumerator RocketAttack(float duration)
     {
-
+        for(int i = 0; i < rocketAttackAmount; i++)
+        {
+            yield return new WaitForSeconds(duration);
+            GameObject rocketObject = Instantiate(rocket, rocketSpawnPoint.position, Quaternion.identity);
+            rocketObject.transform.rotation = Quaternion.Euler(0, 0, 90);
+            rocketObject.GetComponentInChildren<RocketController>().setTarget(rocketSkyPoint.position);
+        }
     }
 
     IEnumerator GrenadeAttack(float duration)
     {
 
-        yield return new WaitForSeconds(duration);
-        Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
-        yield return new WaitForSeconds(duration);
-        Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
-        yield return new WaitForSeconds(duration);
-        Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+        for (int i = 0; i < grenadeAttackAmount; i++)
+        {
+            yield return new WaitForSeconds(duration);
+            Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+        }
     }
 
 
