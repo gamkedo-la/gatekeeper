@@ -20,6 +20,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private BossState state;
     private float timeUntilStateChange = 0f;
     private int goToWaypoint = 0;
+    private int destinationWaypoint = 0;
 
     [Header("Health")]
     [SerializeField] private int health;
@@ -66,12 +67,30 @@ public class BossController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody2DBody.transform.position = Vector3.MoveTowards(rigidbody2DBody.transform.position, waypoints[goToWaypoint].position,1f);
+        if (state == BossState.Jump)
+        {
+            rigidbody2DBody.transform.position = Vector3.MoveTowards(rigidbody2DBody.transform.position, waypoints[goToWaypoint].position, 1f);
+            float distToWaypoint = Vector3.Distance(rigidbody2DBody.transform.position, waypoints[goToWaypoint].position);
+            if (distToWaypoint < 0.2f)
+            {
+                rigidbody2DBody.transform.position = waypoints[goToWaypoint].position;
+                if (goToWaypoint == waypoints.Count - 1) // sky is last point in list
+                {
+                    goToWaypoint = destinationWaypoint;
+                }
+                else
+                {
+
+                    timeUntilStateChange = 0f;
+                }
+            }
+        }
     }
 
     void Update()
     {
         timeUntilStateChange -= Time.deltaTime;
+        //Code inside here only happens when we start a new state
         if (timeUntilStateChange < 0)
         {
             BossState previousState = state;
@@ -80,7 +99,7 @@ public class BossController : MonoBehaviour
             {
                 state = (BossState)Random.Range(0, (int)BossState.NumStates);
             }
-            int prevWaypoint = goToWaypoint;
+            int prevWaypoint = destinationWaypoint;
             switch (state)
             {
                 case BossState.Idle: 
@@ -93,10 +112,11 @@ public class BossController : MonoBehaviour
                     StartCoroutine("RocketAttack", 0.5f);
                     break;
                 case BossState.Jump:
-                    while (prevWaypoint == goToWaypoint)
+                    while (prevWaypoint == destinationWaypoint)
                     {
-                        goToWaypoint = Random.Range(0, waypoints.Count);
+                        destinationWaypoint = Random.Range(0, waypoints.Count - 1); // minus one to exclude sky point
                     }
+                    goToWaypoint = waypoints.Count - 1;
                     break;
                 case BossState.GunArmAim:
                     Aim();
@@ -108,7 +128,12 @@ public class BossController : MonoBehaviour
             
             Debug.Log("Boss state is now: " + state);
         }
+        //Code below here happens every frame
 
+        if (state == BossState.GunArmAim)
+        {
+            Aim();
+        }
 
 
     }
