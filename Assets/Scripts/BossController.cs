@@ -6,6 +6,21 @@ using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
+
+    public enum BossState
+    {
+        Idle,
+        Grenades,
+        Rockets,
+        Jump,
+        GunArmAim,
+        NumStates
+    }
+
+    [SerializeField] private BossState state;
+    private float timeUntilStateChange = 0f;
+    private int goToWaypoint = 0;
+
     [Header("Health")]
     [SerializeField] private int health;
     [SerializeField] private Slider slider;
@@ -51,22 +66,49 @@ public class BossController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody2DBody.transform.position = Vector3.MoveTowards(rigidbody2DBody.transform.position, waypoints[3].position,1f);
+        rigidbody2DBody.transform.position = Vector3.MoveTowards(rigidbody2DBody.transform.position, waypoints[goToWaypoint].position,1f);
     }
 
     void Update()
     {
-        Aim();
-
-        if (Input.GetKeyDown(KeyCode.K))
+        timeUntilStateChange -= Time.deltaTime;
+        if (timeUntilStateChange < 0)
         {
-            StartCoroutine("GrenadeAttack", 0.5f);
+            BossState previousState = state;
+            timeUntilStateChange = Random.Range(1.5f, 2.0f);
+            while(previousState == state)
+            {
+                state = (BossState)Random.Range(0, (int)BossState.NumStates);
+            }
+            int prevWaypoint = goToWaypoint;
+            switch (state)
+            {
+                case BossState.Idle: 
+                    
+                    break;
+                case BossState.Grenades:
+                    StartCoroutine("GrenadeAttack", 0.5f);
+                    break;
+                case BossState.Rockets:
+                    StartCoroutine("RocketAttack", 0.5f);
+                    break;
+                case BossState.Jump:
+                    while (prevWaypoint == goToWaypoint)
+                    {
+                        goToWaypoint = Random.Range(0, waypoints.Count);
+                    }
+                    break;
+                case BossState.GunArmAim:
+                    Aim();
+                    break;
+                default:
+                    Debug.Log("Warning invalid state: " + state);
+                    break;
+            }
+            
+            Debug.Log("Boss state is now: " + state);
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            StartCoroutine("RocketAttack", 0.5f);
-        }
 
 
     }
