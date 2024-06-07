@@ -252,11 +252,11 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log(rb.velocity);
         // Play walking sound if character is moving and sound is not already playing
-        if (!singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) > 0.1f)
+        if (!singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded)
         {
             singleWalkingSound.Play();
         }
-        else if (singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) <= 0.1f)
+        else if (singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) <= 0.1f && !isGrounded)
         {
             singleWalkingSound.Stop();
         }
