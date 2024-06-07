@@ -49,7 +49,6 @@ public class RocketController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        explosionSfx.Play();
         GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
         blast.transform.position = transform.position;
         Collider2D[] nearBy = Physics2D.OverlapCircleAll(transform.position, 3f);
