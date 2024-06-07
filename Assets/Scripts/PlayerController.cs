@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
 
+    [Header("Player Sounds")]
+    [SerializeField] private AudioSource singleWalkingSound;
+
     public void takeDamage(int damage)
     {
         health -= damage;
@@ -246,6 +249,17 @@ public class PlayerController : MonoBehaviour
             return;
         }
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
+
+        Debug.Log(rb.velocity);
+        // Play walking sound if character is moving and sound is not already playing
+        if (!singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded)
+        {
+            singleWalkingSound.Play();
+        }
+        else if (singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) <= 0.1f && !isGrounded)
+        {
+            singleWalkingSound.Stop();
+        }
     }
 
     private void Jump()
