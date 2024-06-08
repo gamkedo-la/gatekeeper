@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class BossController : MonoBehaviour
 {
@@ -86,9 +87,23 @@ public class BossController : MonoBehaviour
             }
         }
     }
-
     void Update()
     {
+
+        if(player.transform.position.x  < transform.position.x)
+        {
+            transform.localScale = new Vector3(.5f,.5f,.5f);
+            facingRight = false;
+        }
+        else if(player.transform.position.x > transform.position.x)
+        {
+            transform.localScale = new Vector3(-.5f, .5f, .5f);
+            facingRight = true;
+        }
+        
+
+
+
         timeUntilStateChange -= Time.deltaTime;
         //Code inside here only happens when we start a new state
         if (timeUntilStateChange < 0)
