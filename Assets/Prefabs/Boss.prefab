@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1227191502778120559}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2, y: 0.09, z: 0}
+  m_LocalPosition: {x: -7.68, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -407,7 +407,7 @@ Transform:
   m_GameObject: {fileID: 2048206762528984849}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.43, y: 0.23, z: 0}
+  m_LocalPosition: {x: 10, y: 1.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -780,10 +780,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7698422365004439209}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22.74, y: -0.00999999, z: 0.07668084}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1527488834811196778}
   m_Father: {fileID: 5422694121376522945}
@@ -800,7 +800,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01203a4a8162454388c51ba5536ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  state: 0
+  health: 1000
+  slider: {fileID: 0}
   player: {fileID: 0}
   rocket: {fileID: 6353319983205736833, guid: 211d6763ae9b0c042ab9c6a3c85afe7f, type: 3}
   grenade: {fileID: 6835487311071705408, guid: 64c8025b584e89d4b94132f8a99309d2, type: 3}
@@ -812,9 +814,11 @@ MonoBehaviour:
   waypoints:
   - {fileID: 2372751793028716009}
   - {fileID: 1593814197820053542}
-  - {fileID: 4129765187234184863}
   - {fileID: 8289172975358586952}
+  - {fileID: 4129765187234184863}
   rigidbody2DBody: {fileID: 698138439653662159}
+  grenadeAttackAmount: 6
+  rocketAttackAmount: 6
 --- !u!1 &7827648063883351822
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +844,7 @@ Transform:
   m_GameObject: {fileID: 7827648063883351822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.27, y: 6.15, z: 0}
+  m_LocalPosition: {x: 8.27, y: 16.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
