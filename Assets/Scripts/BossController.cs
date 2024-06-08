@@ -89,20 +89,7 @@ public class BossController : MonoBehaviour
     }
     void Update()
     {
-
-        if(player.transform.position.x  < rigidbody2DBody.transform.position.x)
-        {
-            rigidbody2DBody.transform.localScale = new Vector3(2.0f,2.0f,2.0f);
-            facingRight = false;
-        }
-        else if(player.transform.position.x > rigidbody2DBody.transform.position.x)
-        {
-            rigidbody2DBody.transform.localScale = new Vector3(-2.0f, 2.0f, 2.0f);
-            facingRight = true;
-        }
-        
-
-
+        flipFacingDirection();
 
         timeUntilStateChange -= Time.deltaTime;
         //Code inside here only happens when we start a new state
@@ -110,15 +97,15 @@ public class BossController : MonoBehaviour
         {
             BossState previousState = state;
             timeUntilStateChange = Random.Range(1.5f, 2.0f);
-            while(previousState == state)
+            while (previousState == state)
             {
                 state = (BossState)Random.Range(0, (int)BossState.NumStates);
             }
             int prevWaypoint = destinationWaypoint;
             switch (state)
             {
-                case BossState.Idle: 
-                    
+                case BossState.Idle:
+
                     break;
                 case BossState.Grenades:
                     StartCoroutine("GrenadeAttack", 0.5f);
@@ -140,7 +127,7 @@ public class BossController : MonoBehaviour
                     Debug.Log("Warning invalid state: " + state);
                     break;
             }
-            
+
             Debug.Log("Boss state is now: " + state);
         }
         //Code below here happens every frame
@@ -151,6 +138,20 @@ public class BossController : MonoBehaviour
         }
 
 
+    }
+
+    private void flipFacingDirection()
+    {
+        if (player.transform.position.x < rigidbody2DBody.transform.position.x)
+        {
+            rigidbody2DBody.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
+            facingRight = false;
+        }
+        else if (player.transform.position.x > rigidbody2DBody.transform.position.x)
+        {
+            rigidbody2DBody.transform.localScale = new Vector3(-2.0f, 2.0f, 2.0f);
+            facingRight = true;
+        }
     }
 
     private void Aim()
@@ -193,7 +194,8 @@ public class BossController : MonoBehaviour
         for (int i = 0; i < grenadeAttackAmount; i++)
         {
             yield return new WaitForSeconds(duration);
-            Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+            GameObject grenadeObject = Instantiate(grenade, grenadeSpawnPoint.position, Quaternion.identity);
+            grenadeObject.GetComponent<GrenadeController>().setPlayer(player);
         }
     }
 

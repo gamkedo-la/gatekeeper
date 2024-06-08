@@ -8,22 +8,26 @@ public class GrenadeController : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidbody2D;
     [SerializeField] private GameObject explosionPrefabFX;
     [SerializeField] private AudioSource explosionSfx;
-    // Start is called before the first frame update
+    [SerializeField] private GameObject player;
+
+    public void setPlayer(GameObject player)
+    {
+        this.player = player;
+    }
+
     void Start()
     {
-        
-    }
 
-    void Awake()
-    {
-        rigidbody2D.velocity = new Vector2(Random.RandomRange(-8,-2), 10);
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (player.transform.position.x < rigidbody2D.transform.position.x)
+        {
+            rigidbody2D.velocity = new Vector2(Random.RandomRange(-8, -2), 10);
+        }
+        else
+        {
+            rigidbody2D.velocity = new Vector2(Random.RandomRange(8, 2), 10);
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)
