@@ -14,6 +14,17 @@ public class RocketController : MonoBehaviour
     private float flyCount;
     private float flyCountMax;
 
+    private bool finalTarget = false;
+
+    public void setRocketRangeStart(Transform rocketRangeStart)
+    {
+        this.rocketRangeStart = rocketRangeStart;
+    }
+    public void setRocketRangeEnd(Transform rocketRangeEnd)
+    {
+        this.rocketRangeEnd = rocketRangeEnd;
+    }
+
     public void setTarget(Vector3 target)
     {
         this.target = target;
@@ -25,7 +36,7 @@ public class RocketController : MonoBehaviour
     {
         flyCount = 0;
         flyCountMax = 2;
-        target = new Vector3(Random.Range(rocketRangeStart.position.x, rocketRangeEnd.position.x), Random.Range(rocketRangeStart.position.y, rocketRangeEnd.position.y), 0);
+        
     }
 
     void Awake()
@@ -39,6 +50,12 @@ public class RocketController : MonoBehaviour
         flyCount += Time.deltaTime;
         if(flyCount > flyCountMax)
         {
+            if (!finalTarget)
+            {
+                target = new Vector3(Random.Range(rocketRangeStart.position.x, rocketRangeEnd.position.x), Random.Range(rocketRangeStart.position.y, rocketRangeEnd.position.y), 0);
+                finalTarget = true;
+            }
+          
             rigidbody2D.transform.position = Vector3.MoveTowards(rigidbody2D.transform.position, target, 1f);
             Vector3 dir = target - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

@@ -30,8 +30,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6111698666198700738}
-  - {fileID: 7604296358855853280}
-  - {fileID: 9105775188194700325}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.082}
 --- !u!1 &8301718258370975051
@@ -197,8 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  rocketRangeStart: {fileID: 7604296358855853280}
-  rocketRangeEnd: {fileID: 9105775188194700325}
+  rocketRangeStart: {fileID: 0}
+  rocketRangeEnd: {fileID: 0}
   rigidbody2D: {fileID: 6642394033047575019}
   explosionPrefabFX: {fileID: 1053540278431116677, guid: bd8411052a971dc4ab61df3d5a04e60b, type: 3}
   explosionSfx: {fileID: 8145584651054237531}
@@ -298,65 +296,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &8698186997100361324
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9105775188194700325}
-  m_Layer: 8
-  m_Name: RocketTargetRangeEnd
-  m_TagString: Untagged
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9105775188194700325
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8698186997100361324}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.70760965, w: 0.70660365}
-  m_LocalPosition: {x: -19.225775, y: 14.117944, z: 0}
-  m_LocalScale: {x: 5.684418, y: 2.0129988, z: 8.73983}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1466195725391814035}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9113107011472409572
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7604296358855853280}
-  m_Layer: 8
-  m_Name: RocketTargetRangeStart
-  m_TagString: Untagged
-  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7604296358855853280
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9113107011472409572}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.70760965, w: 0.70660365}
-  m_LocalPosition: {x: -19.044926, y: 173.28171, z: 0}
-  m_LocalScale: {x: 5.684418, y: 2.0129988, z: 8.73983}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1466195725391814035}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
