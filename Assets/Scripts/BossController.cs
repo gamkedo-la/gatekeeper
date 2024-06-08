@@ -90,14 +90,14 @@ public class BossController : MonoBehaviour
     void Update()
     {
 
-        if(player.transform.position.x  < transform.position.x)
+        if(player.transform.position.x  < rigidbody2DBody.transform.position.x)
         {
-            transform.localScale = new Vector3(.5f,.5f,.5f);
+            rigidbody2DBody.transform.localScale = new Vector3(2.0f,2.0f,2.0f);
             facingRight = false;
         }
-        else if(player.transform.position.x > transform.position.x)
+        else if(player.transform.position.x > rigidbody2DBody.transform.position.x)
         {
-            transform.localScale = new Vector3(-.5f, .5f, .5f);
+            rigidbody2DBody.transform.localScale = new Vector3(-2.0f, 2.0f, 2.0f);
             facingRight = true;
         }
         
