@@ -11,6 +11,10 @@ public class RocketController : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidbody2D;
     [SerializeField] private GameObject explosionPrefabFX;
     [SerializeField] private AudioSource explosionSfx;
+
+
+    private Vector3 lastPositionPerSec;
+
     private float flyCount;
     private float flyCountMax;
 
@@ -36,13 +40,29 @@ public class RocketController : MonoBehaviour
     {
         flyCount = 0;
         flyCountMax = 2;
-        
+        lastPositionPerSec = transform.position;
+        StartCoroutine(StalledCheck());
+
     }
 
     void Awake()
     {
         rigidbody2D.velocity = new Vector2(0, 10);
 
+    }
+
+    IEnumerator StalledCheck()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            float dist = Vector3.Distance(lastPositionPerSec, transform.position);
+            if (dist < 1.0f)
+            {
+                Explode();
+            }
+            lastPositionPerSec = transform.position;
+        }
     }
 
     void FixedUpdate()
@@ -64,21 +84,26 @@ public class RocketController : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void Explode()
     {
         GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
         blast.transform.position = transform.position;
         Collider2D[] nearBy = Physics2D.OverlapCircleAll(transform.position, 3f);
-        for (int i = 0; i < nearBy.Length;i++)
+        for (int i = 0; i < nearBy.Length; i++)
         {
             //Debug.Log(nearBy[i].name);
             PlayerController pcScript = nearBy[i].GetComponent<PlayerController>();
-            if(pcScript != null)
+            if (pcScript != null)
             {
                 pcScript.takeDamage(10);
             }
         }
         Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Explode(); 
 
     }
 
