@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
         }
         rb.velocity = new Vector2(xInput * moveSpeed, rb.velocity.y);
 
-        Debug.Log(rb.velocity);
+        // Debug.Log(rb.velocity);
         // Play walking sound if character is moving and sound is not already playing
         if (!singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded)
         {
