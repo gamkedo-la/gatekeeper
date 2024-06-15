@@ -96,7 +96,7 @@ public class BossController : MonoBehaviour
         if (timeUntilStateChange < 0)
         {
             BossState previousState = state;
-            timeUntilStateChange = Random.Range(1.5f, 2.0f);
+            timeUntilStateChange = Random.Range(2.5f, 3.0f);
             while (previousState == state)
             {
                 state = (BossState)Random.Range(0, (int)BossState.NumStates);
