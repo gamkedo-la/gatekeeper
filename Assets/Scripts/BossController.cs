@@ -205,18 +205,16 @@ public class BossController : MonoBehaviour
 
     IEnumerator GunArmAttack(float duration)
     {
-        
         for (int i = 0; i < gunArmAttackAmount; i++)
         {
             yield return new WaitForSeconds(duration);
             Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
         }
-            
     }
 
     IEnumerator RocketAttack(float duration)
     {
-        for(int i = 0; i < rocketAttackAmount; i++)
+        for (int i = 0; i < rocketAttackAmount; i++)
         {
             yield return new WaitForSeconds(duration);
             GameObject rocketObject = Instantiate(rocket, rocketSpawnPoint.position, Quaternion.identity);
@@ -229,7 +227,6 @@ public class BossController : MonoBehaviour
 
     IEnumerator GrenadeAttack(float duration)
     {
-
         for (int i = 0; i < grenadeAttackAmount; i++)
         {
             yield return new WaitForSeconds(duration);
