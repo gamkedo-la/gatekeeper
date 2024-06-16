@@ -43,6 +43,7 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private int grenadeAttackAmount;
     [SerializeField] private int rocketAttackAmount;
+    [SerializeField] private int gunArmAttackAmount;
 
 
     private Vector3 velocity;
@@ -124,7 +125,7 @@ public class BossController : MonoBehaviour
                     break;
                 case BossState.GunArmAim:
                     Aim();
-                    Shoot();
+                    StartCoroutine("GunArmAttack", 0.2f);
                     break;
                 default:
                     Debug.Log("Warning invalid state: " + state);
@@ -178,9 +179,15 @@ public class BossController : MonoBehaviour
         }
     }
 
-    void Shoot()
+    IEnumerator GunArmAttack(float duration)
     {
-        Instantiate(bullet, bulletSpawnPoint.position,Quaternion.identity);
+        
+        for (int i = 0; i < gunArmAttackAmount; i++)
+        {
+            yield return new WaitForSeconds(duration);
+            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+        }
+            
     }
 
     IEnumerator RocketAttack(float duration)

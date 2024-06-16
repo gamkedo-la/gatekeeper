@@ -26,4 +26,14 @@ public class BulletController : MonoBehaviour
     {
         
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.otherRigidbody.CompareTag("Player")){
+            player.gameObject.GetComponent<PlayerController>().takeDamage(10);
+        }
+        Destroy(gameObject);
+
+    }
 }
