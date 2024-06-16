@@ -108,15 +108,18 @@ public class BossController : MonoBehaviour
             switch (state)
             {
                 case BossState.Idle:
-
+                    ResetAim();
                     break;
                 case BossState.Grenades:
+                    ResetAim();
                     StartCoroutine("GrenadeAttack", 0.5f);
                     break;
                 case BossState.Rockets:
+                    ResetAim();
                     StartCoroutine("RocketAttack", 0.5f);
                     break;
                 case BossState.Jump:
+                    ResetAim();
                     while (prevWaypoint == destinationWaypoint)
                     {
                         destinationWaypoint = Random.Range(0, waypoints.Count - 1); // minus one to exclude sky point
@@ -176,6 +179,27 @@ public class BossController : MonoBehaviour
 
             rightArm.rotation = Quaternion.Euler(0, 0, angle);
             leftArm.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+
+    private void ResetAim()
+    {
+        float angle = Mathf.Atan2(player.transform.position.y - rightArm.position.y, player.transform.position.x - rightArm.position.x) * Mathf.Rad2Deg;
+
+        if (!facingRight)
+        {
+            if (angle < 0) angle += 360;
+            angle = Mathf.Clamp(angle, 90, 270);
+
+            rightArm.rotation = Quaternion.Euler(180, -180, 180);
+            leftArm.rotation = Quaternion.Euler(180, -180, 180);
+        }
+        else if (facingRight)
+        {
+            angle = Mathf.Clamp(angle, -90, 90);
+
+            rightArm.rotation = Quaternion.Euler(0, 0, 0);
+            leftArm.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 

@@ -10986,6 +10986,14 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 241783462}
+    - target: {fileID: 777223305888265434, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -23.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626313337115466608, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -24.27
+      objectReference: {fileID: 0}
     - target: {fileID: 3991088499434409907, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: m_Name
       value: Player
