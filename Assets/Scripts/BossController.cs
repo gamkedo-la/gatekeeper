@@ -45,6 +45,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private int rocketAttackAmount;
     [SerializeField] private int gunArmAttackAmount;
 
+    [SerializeField] private float secAfterAttack;
+
 
     private Vector3 velocity;
 
@@ -99,12 +101,15 @@ public class BossController : MonoBehaviour
         if (timeUntilStateChange < 0)
         {
             BossState previousState = state;
+            //Default but certain attacks will override
             timeUntilStateChange = Random.Range(2.5f, 3.0f);
             while (previousState == state)
             {
                 state = (BossState)Random.Range(0, (int)BossState.NumStates);
             }
             int prevWaypoint = destinationWaypoint;
+            float grenadeDelay = 0.5f;
+            float rocketDelay = 0.5f;
             switch (state)
             {
                 case BossState.Idle:
@@ -112,11 +117,13 @@ public class BossController : MonoBehaviour
                     break;
                 case BossState.Grenades:
                     ResetAim();
-                    StartCoroutine("GrenadeAttack", 0.5f);
+                    StartCoroutine("GrenadeAttack", grenadeDelay);
+                    timeUntilStateChange = grenadeAttackAmount * grenadeDelay + secAfterAttack;
                     break;
                 case BossState.Rockets:
                     ResetAim();
-                    StartCoroutine("RocketAttack", 0.5f);
+                    StartCoroutine("RocketAttack", rocketDelay);
+                    timeUntilStateChange = rocketAttackAmount * rocketDelay + secAfterAttack;
                     break;
                 case BossState.Jump:
                     ResetAim();

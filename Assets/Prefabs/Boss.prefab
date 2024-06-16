@@ -854,6 +854,7 @@ MonoBehaviour:
   grenadeAttackAmount: 6
   rocketAttackAmount: 6
   gunArmAttackAmount: 4
+  secAfterAttack: 4
 --- !u!1 &7827648063883351822
 GameObject:
   m_ObjectHideFlags: 0
