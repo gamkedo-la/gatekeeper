@@ -62,7 +62,8 @@ Transform:
   m_LocalPosition: {x: -0.46, y: 2.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8049286269671191023}
   m_Father: {fileID: 1527488834811196778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7248285212997443479
@@ -724,6 +725,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5263402137171804748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7231064850079342211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8049286269671191023}
+  m_Layer: 7
+  m_Name: BulletSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8049286269671191023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231064850079342211}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0100005, y: -0.5500002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9179714103054917778}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7306301993185547829
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,6 +849,8 @@ MonoBehaviour:
   - {fileID: 8289172975358586952}
   - {fileID: 4129765187234184863}
   rigidbody2DBody: {fileID: 698138439653662159}
+  bullet: {fileID: 110586511532536845, guid: 5a5512622a5720741bc09ef00d04c84c, type: 3}
+  bulletSpawnPoint: {fileID: 0}
   grenadeAttackAmount: 6
   rocketAttackAmount: 6
 --- !u!1 &7827648063883351822

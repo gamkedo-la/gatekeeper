@@ -39,6 +39,8 @@ public class BossController : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidbody2DBody;
 
     [Header("Attack Values")]
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private int grenadeAttackAmount;
     [SerializeField] private int rocketAttackAmount;
 
@@ -122,6 +124,7 @@ public class BossController : MonoBehaviour
                     break;
                 case BossState.GunArmAim:
                     Aim();
+                    Shoot();
                     break;
                 default:
                     Debug.Log("Warning invalid state: " + state);
@@ -173,6 +176,11 @@ public class BossController : MonoBehaviour
             rightArm.rotation = Quaternion.Euler(0, 0, angle);
             leftArm.rotation = Quaternion.Euler(0, 0, angle);
         }
+    }
+
+    void Shoot()
+    {
+        Instantiate(bullet, bulletSpawnPoint.position,Quaternion.identity);
     }
 
     IEnumerator RocketAttack(float duration)

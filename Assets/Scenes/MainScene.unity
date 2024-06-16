@@ -8157,6 +8157,11 @@ Transform:
   - {fileID: 1218285242}
   m_Father: {fileID: 824176987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1149666956 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8049286269671191023, guid: a62e5e322ac7cca4e99adfeebb07474e, type: 3}
+  m_PrefabInstance: {fileID: 2022037052628150268}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1159241198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10986,22 +10991,6 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 241783462}
-    - target: {fileID: 777223305888265434, guid: e98fee781f08d314f848254f1174a069, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 777223305888265434, guid: e98fee781f08d314f848254f1174a069, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.62
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626313337115466608, guid: e98fee781f08d314f848254f1174a069, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626313337115466608, guid: e98fee781f08d314f848254f1174a069, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.9
-      objectReference: {fileID: 0}
     - target: {fileID: 3991088499434409907, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: m_Name
       value: Player
@@ -11045,14 +11034,6 @@ PrefabInstance:
     - target: {fileID: 4147802711822781355, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7107865510570614749, guid: e98fee781f08d314f848254f1174a069, type: 3}
-      propertyPath: m_Volume
-      value: 0.514
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314491506666275826, guid: e98fee781f08d314f848254f1174a069, type: 3}
-      propertyPath: m_Volume
-      value: 0.147
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11111,6 +11092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 8049286269671191023, guid: a62e5e322ac7cca4e99adfeebb07474e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.73
+      objectReference: {fileID: 0}
     - target: {fileID: 8549472300814462441, guid: a62e5e322ac7cca4e99adfeebb07474e, type: 3}
       propertyPath: player
       value: 
@@ -11119,6 +11104,10 @@ PrefabInstance:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1575523200}
+    - target: {fileID: 8549472300814462441, guid: a62e5e322ac7cca4e99adfeebb07474e, type: 3}
+      propertyPath: bulletSpawnPoint
+      value: 
+      objectReference: {fileID: 1149666956}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
