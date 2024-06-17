@@ -668,6 +668,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: soldier_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.39378667, y: 0.63602734}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4972f3064c87ac04cb62759384de0f79
+      internalID: 1033269892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -698,6 +719,7 @@ TextureImporter:
       soldier_sheet_23: -951408503
       soldier_sheet_24: 522027617
       soldier_sheet_25: 578449478
+      soldier_sheet_26: 1033269892
       soldier_sheet_3: -809507240
       soldier_sheet_4: -1738331394
       soldier_sheet_5: -238268179

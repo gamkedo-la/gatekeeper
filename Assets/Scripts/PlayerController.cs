@@ -63,6 +63,19 @@ public class PlayerController : MonoBehaviour
     [Header("Player Sounds")]
     [SerializeField] private AudioSource singleWalkingSound;
 
+    [SerializeField] private GameObject deaddropObject;
+    private bool pickUpDeaddrop = false;
+
+    public void setPickUpDeaddrop(bool pickUpDeaddrop)
+    {
+        this.pickUpDeaddrop = pickUpDeaddrop;
+    }
+
+    public bool getPickUpDeaddrop()
+    {
+        return pickUpDeaddrop;
+    }
+
     public void takeDamage(int damage)
     {
         health -= damage;
@@ -124,6 +137,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (pickUpDeaddrop && !deaddropObject.activeSelf)
+        {
+            deaddropObject.SetActive(true);
+        }
+
         //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.green, .1f);
         if (Input.GetMouseButtonDown(0))
         {
