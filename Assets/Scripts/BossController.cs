@@ -47,10 +47,24 @@ public class BossController : MonoBehaviour
 
     [SerializeField] private float secAfterAttack;
 
+    private bool firstState = true;
+
+    private bool bossFightStarted = false;
+
 
     private Vector3 velocity;
 
     private bool facingRight = false;
+
+    public void setBossFightStarted(bool bossFightStarted)
+    {
+        this.bossFightStarted = bossFightStarted;
+    }
+
+    public bool getBossFightStarted()
+    {
+        return bossFightStarted;
+    }
 
     public void takeDamage(int damage)
     {
@@ -96,6 +110,17 @@ public class BossController : MonoBehaviour
     {
         flipFacingDirection();
 
+        if (bossFightStarted)
+        {
+            BossStateMachine();
+        }
+        
+
+    }
+
+    private void BossStateMachine()
+    {
+        
         timeUntilStateChange -= Time.deltaTime;
         //Code inside here only happens when we start a new state
         if (timeUntilStateChange < 0)
@@ -110,6 +135,15 @@ public class BossController : MonoBehaviour
             int prevWaypoint = destinationWaypoint;
             float grenadeDelay = 0.5f;
             float rocketDelay = 0.5f;
+
+            
+            if (firstState)
+            {
+                state = BossState.Jump;
+                firstState = false;
+            }
+            
+
             switch (state)
             {
                 case BossState.Idle:
@@ -150,8 +184,6 @@ public class BossController : MonoBehaviour
         {
             Aim();
         }
-
-
     }
 
     private void flipFacingDirection()

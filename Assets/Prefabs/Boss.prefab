@@ -797,6 +797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9163757895869384925}
   - component: {fileID: 8549472300814462441}
+  - component: {fileID: 8590350606526653199}
   m_Layer: 7
   m_Name: BossObject
   m_TagString: Untagged
@@ -832,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01203a4a8162454388c51ba5536ea8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 3
   health: 1000
   slider: {fileID: 0}
   player: {fileID: 0}
@@ -855,6 +856,22 @@ MonoBehaviour:
   rocketAttackAmount: 6
   gunArmAttackAmount: 4
   secAfterAttack: 4
+--- !u!114 &8590350606526653199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7698422365004439209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6583e5eec076021469ed2f8d307ddaab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  warningText: {fileID: 0}
+  bossHealthUI: {fileID: 0}
+  flashCount: 10
 --- !u!1 &7827648063883351822
 GameObject:
   m_ObjectHideFlags: 0
