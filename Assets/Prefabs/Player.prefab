@@ -623,6 +623,7 @@ MonoBehaviour:
   dashEffectFX: {fileID: 317964840634771963}
   singleGunShotSound: {fileID: 8314491506666275826}
   singleWalkingSound: {fileID: 7107865510570614749}
+  deaddropObject: {fileID: 4462565988715784971}
 --- !u!70 &390819850819649408
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
