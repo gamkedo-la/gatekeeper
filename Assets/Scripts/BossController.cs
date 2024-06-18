@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
@@ -108,6 +109,12 @@ public class BossController : MonoBehaviour
     }
     void Update()
     {
+
+        if(health <= 0)
+        {
+            SceneManager.LoadScene(3);
+        }
+
         flipFacingDirection();
 
         if (bossFightStarted)
