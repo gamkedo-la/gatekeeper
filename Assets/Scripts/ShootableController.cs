@@ -8,6 +8,7 @@ public class ShootableController : MonoBehaviour
 
     public void Hit()
     {
-        rb.velocity = new Vector2(rb.velocity.x, 10.0f);
+        rb.velocity = new Vector2(Random.RandomRange(-2f,2f), 5.0f);
+        rb.AddTorque(Random.RandomRange(-10f,10f));
     }
 }
