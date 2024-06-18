@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class MissionTextControlerUI : MonoBehaviour
+public class ArenaDoorController : MonoBehaviour
 {
+
+    [SerializeField] private Transform closedPositionWaypoint;
+
     [SerializeField] private GameObject player;
-    
-    
+
+    private bool closed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,9 +20,11 @@ public class MissionTextControlerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.GetComponent<PlayerController>().getPickUpDeaddrop() == true)
+        if (player.GetComponent<PlayerController>().getPickUpDeaddrop() == true && !closed)
         {
-            gameObject.GetComponent <TMP_Text>().text = "Current Mission: SURVIVE";
+            transform.position = closedPositionWaypoint.position;
+            closed = true;
         }
     }
+
 }
