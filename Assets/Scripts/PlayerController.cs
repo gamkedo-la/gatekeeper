@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     private bool isCrouched;
     private bool isFiring;
     private bool isDashing;
+    private bool isReloading;
+    private bool magazineEmpty = false;
+    private int magazineAmmoCount = 30;
 
     private float dashDirection;
     private float dashActivationTimer;
@@ -62,7 +65,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource singleGunShotSound;
 
     [Header("Player Sounds")]
-    [SerializeField] private AudioSource singleWalkingSound;
+    //[SerializeField] private AudioSource singleWalkingSound;
 
     [SerializeField] private GameObject deaddropObject;
     private bool pickUpDeaddrop = false;
@@ -98,46 +101,59 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position);
-        
-        singleGunShotSound.Play();
-        if (raycastHit2D.collider != null && raycastHit2D.collider.gameObject.layer != 3)
+        if(magazineAmmoCount <= 0)
         {
-            if(raycastHit2D.collider.gameObject.layer == 7)
+            magazineEmpty = true;
+        }
+
+        if (!magazineEmpty)
+        {
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position);
+            magazineAmmoCount--;
+            singleGunShotSound.Play();
+            if (raycastHit2D.collider != null && raycastHit2D.collider.gameObject.layer != 3)
             {
-                raycastHit2D.collider.gameObject.GetComponentInParent<BossController>().takeDamage(15);
+                if (raycastHit2D.collider.gameObject.layer == 7)
+                {
+                    raycastHit2D.collider.gameObject.GetComponentInParent<BossController>().takeDamage(15);
+                }
+
+                if (raycastHit2D.collider.gameObject.CompareTag("Shootable"))
+                {
+                    raycastHit2D.collider.gameObject.GetComponent<ShootableController>().Hit();
+                }
+                Debug.Log(raycastHit2D.collider.attachedRigidbody);
+                lineRenderer.SetPosition(0, muzzleTransform.position);
+                lineRenderer.SetPosition(1, raycastHit2D.point);
+                if (bulletCasingEjectionFX) Instantiate(bulletCasingEjectionFX, ejectionPointTransform.position, ejectionPointTransform.rotation);
+                // fixme, we can maybe orient the fx with the impact normal
+                // Quaternion.fromVector2D(raycastHit2D.normal)); or something?
+                if (bulletImpactFX) Instantiate(bulletImpactFX, raycastHit2D.point, Quaternion.identity);
+                if (raycastHit2D.collider.gameObject.layer == 9)
+                {
+                    Debug.Log("Object Hit");
+                    raycastHit2D.collider.gameObject.GetComponent<DestructableObject>().TakeDamage(3);
+                    if (objectImpactFX) Instantiate(objectImpactFX, raycastHit2D.point, Quaternion.identity);
+                }
+            }
+            else
+            {
+                lineRenderer.SetPosition(0, muzzleTransform.position);
+                lineRenderer.SetPosition(1, bulletTargetTransform.position);
+                //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.blue, .1f);
             }
 
-            if (raycastHit2D.collider.gameObject.CompareTag("Shootable"))
-            {
-                raycastHit2D.collider.gameObject.GetComponent<ShootableController>().Hit();
-            }
-            Debug.Log(raycastHit2D.collider.attachedRigidbody);
-            lineRenderer.SetPosition(0, muzzleTransform.position);
-            lineRenderer.SetPosition(1, raycastHit2D.point);
-            if (bulletCasingEjectionFX) Instantiate(bulletCasingEjectionFX, ejectionPointTransform.position, ejectionPointTransform.rotation);
-            // fixme, we can maybe orient the fx with the impact normal
-            // Quaternion.fromVector2D(raycastHit2D.normal)); or something?
-            if (bulletImpactFX) Instantiate(bulletImpactFX,raycastHit2D.point,Quaternion.identity);
-            if(raycastHit2D.collider.gameObject.layer == 9)
-            {
-                Debug.Log("Object Hit");
-                raycastHit2D.collider.gameObject.GetComponent<DestructableObject>().TakeDamage(3);
-				if (objectImpactFX) Instantiate(objectImpactFX,raycastHit2D.point,Quaternion.identity);
-            }
+            lineRenderer.enabled = true;
+            yield return new WaitForSeconds(0.02f);
+
+            lineRenderer.enabled = false;
+            isFiring = false;
         }
         else
         {
-            lineRenderer.SetPosition(0, muzzleTransform.position);
-            lineRenderer.SetPosition(1, bulletTargetTransform.position);
-            //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.blue, .1f);
+            //play clicking sound
+            isFiring = false;
         }
-
-        lineRenderer.enabled = true;
-        yield return new WaitForSeconds(0.02f);
-
-        lineRenderer.enabled = false;
-        isFiring = false;
     }
 
 
@@ -157,11 +173,22 @@ public class PlayerController : MonoBehaviour
         //Debug.DrawRay(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position, Color.green, .1f);
         if (Input.GetMouseButtonDown(0))
         {
-            isFiring = true;
+            if (!magazineEmpty)
+            {
+                isFiring = true;
+            }
+            
             StartCoroutine(Shoot());
 
         }
-        
+
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            isReloading = true;
+            StartCoroutine("Reloading", .5f);
+
+        }
        
         Aim();
 
@@ -172,6 +199,14 @@ public class PlayerController : MonoBehaviour
 
         FlipController();
         AnimatorControllers();
+    }
+
+    IEnumerator Reloading(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        magazineAmmoCount = 30;
+        magazineEmpty = false;
+        isReloading = false;
     }
 
     private void Aim()
@@ -282,6 +317,7 @@ public class PlayerController : MonoBehaviour
 
         // Debug.Log(rb.velocity);
         // Play walking sound if character is moving and sound is not already playing
+        /*
         if (!singleWalkingSound.isPlaying && Mathf.Abs(rb.velocity.x) > 0.1f && isGrounded)
         {
             singleWalkingSound.Play();
@@ -290,6 +326,8 @@ public class PlayerController : MonoBehaviour
         {
             singleWalkingSound.Stop();
         }
+
+        */
     }
 
     private void Jump()
@@ -315,6 +353,7 @@ public class PlayerController : MonoBehaviour
         gunAnim.SetBool("isFiring", isFiring);
         gunAnim.SetBool("isCrouched", isCrouched);
         gunAnim.SetBool("isGrounded", isGrounded);
+        gunAnim.SetBool("isReloading", isReloading);
     }
 
     private void Flip()
