@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Guard
   - Peasant
+  - Shootable
   layers:
   - Default
   - TransparentFX

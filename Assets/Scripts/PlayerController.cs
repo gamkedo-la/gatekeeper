@@ -106,6 +106,11 @@ public class PlayerController : MonoBehaviour
             {
                 raycastHit2D.collider.gameObject.GetComponentInParent<BossController>().takeDamage(15);
             }
+
+            if (raycastHit2D.collider.gameObject.CompareTag("Shootable"))
+            {
+                raycastHit2D.collider.gameObject.GetComponent<ShootableController>().Hit();
+            }
             Debug.Log(raycastHit2D.collider.attachedRigidbody);
             lineRenderer.SetPosition(0, muzzleTransform.position);
             lineRenderer.SetPosition(1, raycastHit2D.point);
