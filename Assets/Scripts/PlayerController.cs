@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -50,6 +51,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform bulletTargetTransform;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Transform ejectionPointTransform;
+    [SerializeField] private GameObject ammoUIElement;
+    [SerializeField] private int magazineCount = 6;
     
 	[Header("Particle Effect Prefabs")]
 	[SerializeField] private GameObject bulletImpactFX;
@@ -183,7 +186,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && magazineCount >= 1 && magazineAmmoCount < 29)
         {
             isReloading = true;
             StartCoroutine("Reloading", .5f);
@@ -204,9 +207,16 @@ public class PlayerController : MonoBehaviour
     IEnumerator Reloading(float duration)
     {
         yield return new WaitForSeconds(duration);
+        magazineCount--;
         magazineAmmoCount = 30;
         magazineEmpty = false;
         isReloading = false;
+        UpdateMagazineUI();
+    }
+
+    private void UpdateMagazineUI()
+    {
+        ammoUIElement.GetComponent<TMP_Text>().text = "X " + magazineCount;
     }
 
     private void Aim()
