@@ -1028,7 +1028,7 @@ MonoBehaviour:
     and not r. When you reload before going empty why doesn't the ammo count read
     31? It just says 30, where did the bullet in the chamber go? I always hate when
     games do that. Anyways, give it another shot, I think you can do it this time.
-    Try jumping around or something.
+    Maybe try jumping around or something.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
