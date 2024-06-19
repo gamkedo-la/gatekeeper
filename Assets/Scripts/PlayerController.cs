@@ -110,6 +110,11 @@ public class PlayerController : MonoBehaviour
         dashCooldownTimer = dashCooldown;
     }
 
+    public int GetHealth()
+    {
+        return health;
+    }
+
     IEnumerator Shoot()
     {
         UpdateMagazineUI();

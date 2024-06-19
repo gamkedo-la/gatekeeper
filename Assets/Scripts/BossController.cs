@@ -113,7 +113,7 @@ public class BossController : MonoBehaviour
         float distToPlayer = Vector3.Distance(rigidbody2DBody.position,player.transform.position);
         //Debug.Log("Dist to Player: " + distToPlayer);
 
-        if (distToPlayer < 5.0f)
+        if (distToPlayer < 5.0f || distToPlayer > 30.0f && bossFightStarted)
         {
             timeUntilStateChange = Random.Range(2.5f, 3.0f);
             state = BossState.Jump;
