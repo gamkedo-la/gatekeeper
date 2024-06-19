@@ -12470,6 +12470,10 @@ PrefabInstance:
       propertyPath: singleWalkingSound
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 746000021895321406, guid: e98fee781f08d314f848254f1174a069, type: 3}
+      propertyPath: skipTutorialPosition
+      value: 
+      objectReference: {fileID: 1978685391}
     - target: {fileID: 777223305888265434, guid: e98fee781f08d314f848254f1174a069, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.4

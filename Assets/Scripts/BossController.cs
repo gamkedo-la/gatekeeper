@@ -110,6 +110,16 @@ public class BossController : MonoBehaviour
     void Update()
     {
 
+        float distToPlayer = Vector3.Distance(rigidbody2DBody.position,player.transform.position);
+        //Debug.Log("Dist to Player: " + distToPlayer);
+
+        if (distToPlayer < 5.0f)
+        {
+            timeUntilStateChange = Random.Range(2.5f, 3.0f);
+            state = BossState.Jump;
+            Jump();
+        }
+
         if(health <= 0)
         {
             SceneManager.LoadScene(3);
@@ -123,6 +133,17 @@ public class BossController : MonoBehaviour
         }
         
 
+    }
+
+    private void Jump()
+    {
+        int prevWaypoint = destinationWaypoint;
+        ResetAim();
+        while (prevWaypoint == destinationWaypoint)
+        {
+            destinationWaypoint = Random.Range(0, waypoints.Count - 1); // minus one to exclude sky point
+        }
+        goToWaypoint = waypoints.Count - 1;
     }
 
     private void BossStateMachine()
@@ -139,7 +160,7 @@ public class BossController : MonoBehaviour
             {
                 state = (BossState)Random.Range(0, (int)BossState.NumStates);
             }
-            int prevWaypoint = destinationWaypoint;
+            
             float grenadeDelay = 0.5f;
             float rocketDelay = 0.5f;
 
@@ -167,12 +188,7 @@ public class BossController : MonoBehaviour
                     timeUntilStateChange = rocketAttackAmount * rocketDelay + secAfterAttack;
                     break;
                 case BossState.Jump:
-                    ResetAim();
-                    while (prevWaypoint == destinationWaypoint)
-                    {
-                        destinationWaypoint = Random.Range(0, waypoints.Count - 1); // minus one to exclude sky point
-                    }
-                    goToWaypoint = waypoints.Count - 1;
+                    Jump();
                     break;
                 case BossState.GunArmAim:
                     Aim();

@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public static bool finishedTutorial = false;
+    [SerializeField] private Transform skipTutorialPosition;
+
     private Rigidbody2D rb;
 
     [Header("Health")]
@@ -95,6 +98,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+
+        if (finishedTutorial)
+        {
+            transform.position = skipTutorialPosition.position;
+        }
+
         slider.minValue = 0;
         slider.maxValue = health;
         slider.value = health;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
+    private bool skipTutorialChecked = false;
     private float distanceZ;
 
     [SerializeField] private Transform player;
@@ -17,7 +17,16 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
+        float lerpValue = Time.deltaTime * 5f;
+        if (skipTutorialChecked == false)
+        {
+            skipTutorialChecked = true;
+            if(PlayerController.finishedTutorial)
+            {
+                lerpValue = 1.0f;
+            }
+        }
         Vector3 targetPosition = new Vector3(player.transform.position.x, 3.0f, player.transform.position.z + distanceZ);
-        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetPosition, Time.deltaTime * 5f);
+        Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetPosition, lerpValue);
     }
 }

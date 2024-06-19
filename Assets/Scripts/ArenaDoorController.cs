@@ -22,6 +22,7 @@ public class ArenaDoorController : MonoBehaviour
     {
         if (player.GetComponent<PlayerController>().getPickUpDeaddrop() == true && !closed)
         {
+            PlayerController.finishedTutorial = true;
             transform.position = closedPositionWaypoint.position;
             closed = true;
         }
