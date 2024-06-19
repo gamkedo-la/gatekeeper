@@ -135,7 +135,12 @@ public class PlayerController : MonoBehaviour
                 if (raycastHit2D.collider.gameObject.layer == 9)
                 {
                     Debug.Log("Object Hit");
-                    raycastHit2D.collider.gameObject.GetComponent<DestructableObject>().TakeDamage(3);
+                    DestructableObject doScript = raycastHit2D.collider.gameObject.GetComponent<DestructableObject>();
+                    if (doScript)
+                    {
+                        doScript.TakeDamage(3);
+                    }
+                    
                     if (objectImpactFX) Instantiate(objectImpactFX, raycastHit2D.point, Quaternion.identity);
                 }
             }
