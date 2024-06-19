@@ -68,6 +68,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
+    [SerializeField] private AudioSource emptyGunSound;
+    [SerializeField] private AudioSource reloadingGunSound;
 
     [Header("Player Sounds")]
     //[SerializeField] private AudioSource singleWalkingSound;
@@ -175,7 +177,10 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            //play clicking sound
+            if (!isReloading)
+            {
+                emptyGunSound.Play();
+            }
             isFiring = false;
         }
     }
@@ -207,9 +212,10 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R) && magazineAmmoCount < 30)
+        if (Input.GetKeyDown(KeyCode.R) && magazineAmmoCount < 30 && !isReloading)
         {
             isReloading = true;
+            reloadingGunSound.Play();
             StartCoroutine("Reloading", .5f);
 
         }
@@ -228,6 +234,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator Reloading(float duration)
     {
         yield return new WaitForSeconds(duration);
+
         magazineAmmoCount = 30;
         magazineEmpty = false;
         isReloading = false;

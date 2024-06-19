@@ -336,7 +336,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 2126205580, guid: 20ab3482cec1b6146bea0837dd638c11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -534,7 +534,7 @@ Transform:
   m_GameObject: {fileID: 2518068124269271760}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7, y: -23.99, z: 0}
+  m_LocalPosition: {x: -4.4, y: -4.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 3701021160472797840}
   - component: {fileID: 8314491506666275826}
   - component: {fileID: 7107865510570614749}
+  - component: {fileID: 3739667550362957414}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -595,10 +596,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5851eff237a071e419878c8ba5fe550e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skipTutorialPosition: {fileID: 0}
   health: 100
   slider: {fileID: 0}
-  moveSpeed: 4
-  jumpForce: 15
+  moveSpeed: 5
+  jumpForce: 10
   playerAnim: {fileID: 7627585242137740006}
   gunAnim: {fileID: 5195925350280055788}
   dashSpeed: 15
@@ -613,6 +615,7 @@ MonoBehaviour:
   bulletTargetTransform: {fileID: 8793089180124261175}
   lineRenderer: {fileID: 7224745121700633202}
   ejectionPointTransform: {fileID: 5270655454153621635}
+  ammoUIElement: {fileID: 0}
   bulletImpactFX: {fileID: 1053540278431116677, guid: 500b9c4d8a7b77b48814d3070dbbcb38, type: 3}
   objectImpactFX: {fileID: 1053540278431116677, guid: 12f677d20346bc4479c0486128687ab2, type: 3}
   footstepFX: {fileID: 48133107200676294, guid: 0ff9ecf1dd36ed84b8d6c70162427ca7, type: 3}
@@ -622,7 +625,8 @@ MonoBehaviour:
   bulletCasingEjectionFX: {fileID: 2580552711233990987, guid: 57c0861b04b0612409ac09395390a350, type: 3}
   dashEffectFX: {fileID: 317964840634771963}
   singleGunShotSound: {fileID: 8314491506666275826}
-  singleWalkingSound: {fileID: 7107865510570614749}
+  emptyGunSound: {fileID: 7107865510570614749}
+  reloadingGunSound: {fileID: 3739667550362957414}
   deaddropObject: {fileID: 4462565988715784971}
 --- !u!70 &390819850819649408
 CapsuleCollider2D:
@@ -792,9 +796,105 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 209467762ad2d4e4a8fcf1a729a4dcde, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.514
+  m_audioClip: {fileID: 8300000, guid: 4038352ae1bbb4549b1f1cb861493c76, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.358
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &3739667550362957414
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3991088499434409907}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: afd1f8a2b8fade64ab03c821b39d38a1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.317
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -904,7 +1004,7 @@ Transform:
   m_GameObject: {fileID: 4462565988715784971}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.252, y: 0.35, z: 0}
+  m_LocalPosition: {x: -0.252, y: 0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -950,7 +1050,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 1033269892, guid: 20ab3482cec1b6146bea0837dd638c11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -987,7 +1087,7 @@ Transform:
   m_GameObject: {fileID: 4473795532144420448}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 0}
+  m_LocalPosition: {x: 26.45, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1051,7 +1151,7 @@ Transform:
   m_GameObject: {fileID: 4580110376415855717}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -24.27, z: 0}
+  m_LocalPosition: {x: 4.33, y: -4.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
