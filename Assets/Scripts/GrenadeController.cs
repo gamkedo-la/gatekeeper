@@ -21,11 +21,11 @@ public class GrenadeController : MonoBehaviour
 
         if (player.transform.position.x < rigidbody2D.transform.position.x)
         {
-            rigidbody2D.velocity = new Vector2(Random.RandomRange(-8, -2), 10);
+            rigidbody2D.velocity = new Vector2(Random.Range(-8, 0), 10);
         }
         else
         {
-            rigidbody2D.velocity = new Vector2(Random.RandomRange(8, 2), 10);
+            rigidbody2D.velocity = new Vector2(Random.Range(0, 8), 10);
         }
 
     }

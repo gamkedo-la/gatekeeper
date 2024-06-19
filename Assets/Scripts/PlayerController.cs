@@ -55,7 +55,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private Transform ejectionPointTransform;
     [SerializeField] private GameObject ammoUIElement;
-    [SerializeField] private int magazineCount = 6;
     
 	[Header("Particle Effect Prefabs")]
 	[SerializeField] private GameObject bulletImpactFX;
@@ -113,15 +112,18 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        if(magazineAmmoCount <= 0)
+        UpdateMagazineUI();
+
+        if (magazineAmmoCount <= 0)
         {
             magazineEmpty = true;
         }
 
-        if (!magazineEmpty)
+        if (!magazineEmpty && !isReloading)
         {
             RaycastHit2D raycastHit2D = Physics2D.Raycast(muzzleTransform.position, bulletTargetTransform.position - muzzleTransform.position);
             magazineAmmoCount--;
+            UpdateMagazineUI();
             singleGunShotSound.Play();
             if (raycastHit2D.collider != null && raycastHit2D.collider.gameObject.layer != 3)
             {
@@ -134,7 +136,7 @@ public class PlayerController : MonoBehaviour
                 {
                     raycastHit2D.collider.gameObject.GetComponent<ShootableController>().Hit();
                 }
-                Debug.Log(raycastHit2D.collider.attachedRigidbody);
+
                 lineRenderer.SetPosition(0, muzzleTransform.position);
                 lineRenderer.SetPosition(1, raycastHit2D.point);
                 if (bulletCasingEjectionFX) Instantiate(bulletCasingEjectionFX, ejectionPointTransform.position, ejectionPointTransform.rotation);
@@ -143,7 +145,7 @@ public class PlayerController : MonoBehaviour
                 if (bulletImpactFX) Instantiate(bulletImpactFX, raycastHit2D.point, Quaternion.identity);
                 if (raycastHit2D.collider.gameObject.layer == 9)
                 {
-                    Debug.Log("Object Hit");
+                    //Debug.Log("Object Hit");
                     DestructableObject doScript = raycastHit2D.collider.gameObject.GetComponent<DestructableObject>();
                     if (doScript)
                     {
@@ -200,7 +202,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R) && magazineCount >= 1 && magazineAmmoCount < 29)
+        if (Input.GetKeyDown(KeyCode.R) && magazineAmmoCount < 30)
         {
             isReloading = true;
             StartCoroutine("Reloading", .5f);
@@ -221,7 +223,6 @@ public class PlayerController : MonoBehaviour
     IEnumerator Reloading(float duration)
     {
         yield return new WaitForSeconds(duration);
-        magazineCount--;
         magazineAmmoCount = 30;
         magazineEmpty = false;
         isReloading = false;
@@ -230,7 +231,7 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateMagazineUI()
     {
-        ammoUIElement.GetComponent<TMP_Text>().text = "X " + magazineCount;
+        ammoUIElement.GetComponent<TMP_Text>().text = "" + magazineAmmoCount;
     }
 
     private void Aim()
