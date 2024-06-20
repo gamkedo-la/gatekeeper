@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject deaddropObject;
     private bool pickUpDeaddrop = false;
 
+    [SerializeField] private GameObject reloadingTooltip;
+    private float reloadingTimer = 0;
+
     public void setPickUpDeaddrop(bool pickUpDeaddrop)
     {
         this.pickUpDeaddrop = pickUpDeaddrop;
@@ -189,6 +192,15 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        if (magazineEmpty)
+        {
+            reloadingTimer += Time.deltaTime;
+            if(reloadingTimer > 3)
+            {
+                reloadingTooltip.SetActive(true);
+            }
+        }
+
         if (health <= 0)
         {
             SceneManager.LoadScene(2);
@@ -233,6 +245,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Reloading(float duration)
     {
+        reloadingTimer = 0;
+        reloadingTooltip.SetActive(false);
+
         yield return new WaitForSeconds(duration);
 
         magazineAmmoCount = 30;
