@@ -34,16 +34,12 @@ public class GrenadeController : MonoBehaviour
     {
         GameObject blast = GameObject.Instantiate<GameObject>(explosionPrefabFX);
         blast.transform.position = transform.position;
-        Collider2D[] nearBy = Physics2D.OverlapCircleAll(transform.position, 3f);
-        for (int i = 0; i < nearBy.Length; i++)
+
+        if (collision.gameObject.CompareTag("Player"))
         {
-            //Debug.Log(nearBy[i].name);
-            PlayerController pcScript = nearBy[i].GetComponent<PlayerController>();
-            if (pcScript != null)
-            {
-                pcScript.takeDamage(10);
-            }
+            player.GetComponent<PlayerController>().takeDamage(10);
         }
+
         Destroy(gameObject);
 
     }
