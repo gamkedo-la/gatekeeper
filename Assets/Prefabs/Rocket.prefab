@@ -200,6 +200,7 @@ MonoBehaviour:
   rigidbody2D: {fileID: 6642394033047575019}
   explosionPrefabFX: {fileID: 1053540278431116677, guid: bd8411052a971dc4ab61df3d5a04e60b, type: 3}
   explosionSfx: {fileID: 8145584651054237531}
+  player: {fileID: 0}
 --- !u!82 &8145584651054237531
 AudioSource:
   m_ObjectHideFlags: 0
