@@ -7862,13 +7862,37 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 23.925049
       objectReference: {fileID: 0}
+    - target: {fileID: 1709045134622026685, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1709045134622026685, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2047372315998506325, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 44.899902
       objectReference: {fileID: 0}
+    - target: {fileID: 3213519917171527204, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3806165731266692065, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264602050059025895, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
+      propertyPath: m_margin.x
+      value: -300.4136
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264602050059025895, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
+      propertyPath: m_margin.z
+      value: -299.7065
+      objectReference: {fileID: 0}
+    - target: {fileID: 4264602050059025895, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4956365375776636311, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7877,6 +7901,10 @@ PrefabInstance:
     - target: {fileID: 4956365375776636311, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6000161273139519288, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.93
       objectReference: {fileID: 0}
     - target: {fileID: 6000161273139519288, guid: ba0eb211405c66e4ea5036ecc41ace69, type: 3}
       propertyPath: m_ConstrainProportionsScale
