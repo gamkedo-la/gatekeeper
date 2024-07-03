@@ -109,6 +109,14 @@ public class BossController : MonoBehaviour
     }
     void Update()
     {
+        if(PlayerController.allowDebugCheats)
+        {
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                health = 10;
+            }
+        }
+
 
         float distToPlayer = Vector3.Distance(rigidbody2DBody.position,player.transform.position);
         Debug.Log("Dist to Player: " + distToPlayer);

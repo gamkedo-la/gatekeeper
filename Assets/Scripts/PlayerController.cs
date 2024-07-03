@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public static bool finishedTutorial = false;
     [SerializeField] private Transform skipTutorialPosition;
 
+    public static bool allowDebugCheats = true;
+
     private Rigidbody2D rb;
 
     [Header("Health")]
@@ -103,6 +105,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
+        if (allowDebugCheats)
+        {
+            Debug.Log("Debug mode is active, do not ship!");
+        }
+
         if (finishedTutorial)
         {
             transform.position = skipTutorialPosition.position;
@@ -191,6 +198,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (allowDebugCheats)
+        {
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                transform.position = skipTutorialPosition.position;
+            }
+        }
+
 
         if (magazineEmpty)
         {
