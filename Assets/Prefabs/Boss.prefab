@@ -856,6 +856,7 @@ MonoBehaviour:
   rocketAttackAmount: 8
   gunArmAttackAmount: 6
   secAfterAttack: 4
+  bossExplosionPrefabFX: {fileID: 6345718707915129601, guid: 83a38942f59606b47b590fbb8f0522d3, type: 3}
 --- !u!114 &8590350606526653199
 MonoBehaviour:
   m_ObjectHideFlags: 0

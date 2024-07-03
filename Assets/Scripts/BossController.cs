@@ -48,6 +48,8 @@ public class BossController : MonoBehaviour
 
     [SerializeField] private float secAfterAttack;
 
+    [SerializeField] private GameObject bossExplosionPrefabFX;
+
     private bool firstState = true;
 
     private bool bossFightStarted = false;
@@ -130,7 +132,9 @@ public class BossController : MonoBehaviour
 
         if(health <= 0)
         {
-            SceneManager.LoadScene(3);
+            //SceneManager.LoadScene(3);
+            gameObject.SetActive(false);
+            GameObject.Instantiate(bossExplosionPrefabFX, rigidbody2DBody.position, Quaternion.identity);
         }
 
         flipFacingDirection();
