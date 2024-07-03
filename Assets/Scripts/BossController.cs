@@ -132,9 +132,10 @@ public class BossController : MonoBehaviour
 
         if(health <= 0)
         {
-            //SceneManager.LoadScene(3);
+
+            player.GetComponent<PlayerController>().StartEndScene();
             gameObject.SetActive(false);
-            GameObject.Instantiate(bossExplosionPrefabFX, rigidbody2DBody.position, Quaternion.identity);
+            GameObject.Instantiate(bossExplosionPrefabFX,rigidbody2DBody.position,Quaternion.identity);
         }
 
         flipFacingDirection();

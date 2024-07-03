@@ -127,6 +127,25 @@ public class PlayerController : MonoBehaviour
         return health;
     }
 
+    private bool endSequenceStarted = false;
+
+    public void StartEndScene()
+    {
+        if (endSequenceStarted)
+        {
+            return;
+        }
+        endSequenceStarted = true;
+        StartCoroutine(DelayThenEnd());
+
+    }
+
+    IEnumerator DelayThenEnd()
+    {
+        yield return new WaitForSeconds(6.0f);
+        SceneManager.LoadScene(3);
+    }
+
     IEnumerator Shoot()
     {
         UpdateMagazineUI();
