@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public static bool finishedTutorial = false;
     [SerializeField] private Transform skipTutorialPosition;
 
-    public static bool allowDebugCheats = true;
+    public static bool allowDebugCheats = false;
 
     private Rigidbody2D rb;
 
@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject gotHitFX;
     [SerializeField] private GameObject bulletCasingEjectionFX;
     [SerializeField] private DashEffect dashEffectFX;
+    [SerializeField] private GameObject gunMagazinePrefabFX;
 
     [Header("Gun Sounds")]
     [SerializeField] private AudioSource singleGunShotSound;
@@ -284,6 +285,7 @@ public class PlayerController : MonoBehaviour
         reloadingTooltip.SetActive(false);
 
         yield return new WaitForSeconds(duration);
+        //GameObject.Instantiate(gunMagazinePrefabFX, ejectionPointTransform.position, Quaternion.identity);
 
         magazineAmmoCount = 30;
         magazineEmpty = false;
